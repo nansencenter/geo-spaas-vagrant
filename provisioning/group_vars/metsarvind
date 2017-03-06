@@ -15,5 +15,5 @@ sample_files:
   - {name: arome_arctic_pp_2_5km_20170227T00Z.nc, mapper: generic}
   - {name: arome_metcoop_default2_5km_20170227T00Z.nc, mapper: generic}
   - {name: ec_atmo_0_1deg_20170227T000000Z_1h.nc, mapper: generic} # ECMWF
-  - {name: S1A_EW_GRDM_1SDH_20170227T065537_20170227T065637_015466_019652_DD9C.zip, mapper: sentinel1_l1}
-  - {name: S1B_IW_GRDM_1SDV_20170227T061040_20170227T061113_004482_007CD7_3205.zip, mapper: sentinel1_l1}
+  - {name: S1A_EW_GRDM_1SDH_20170227T065537_20170227T065637_015466_019652_DD9C.SAFE, mapper: sentinel1_l1}
+  - {name: S1B_IW_GRDM_1SDV_20170227T061040_20170227T061113_004482_007CD7_3205.SAFE, mapper: sentinel1_l1}
