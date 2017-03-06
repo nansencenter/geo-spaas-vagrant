@@ -2,11 +2,22 @@
 use_local_database: yes
 make_migrations: yes
 run_migrate: yes
-git_force_nansencloud: no
+git_force_geospaas: no
 create_home_dir_link: yes
 catalog_extra: yes
 add_sample_data: yes
 private_sample_files: []
+
+geospaas_repo: django-geo-spaas
+geospaas_app: geospaas
+
+geospaas_core_apps:
+  - geospaas.vocabularies
+  - geospaas.catalog
+  - geospaas.nansat_ingestor
+  - geospaas.viewer
+  - django_forms_bootstrap
+  - leaflet
 
 # Variables for the django_deploy playbook 
 
@@ -14,6 +25,7 @@ private_sample_files: []
 django_app_user: 'vagrant'
 
 # Application folders
-django_deploy_root_path: '/vagrant/shared/catalog_vm/nansen-cloud'
-django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
+django_deploy_root_path: '{{ dev_sources_dir }}/{{ geospaas_repo }}'
 django_application_name: 'project'
+django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
+

@@ -30,7 +30,11 @@
   command: mv /home/vagrant/.bash_history /vagrant/shared/dot_bash_history
   when: bash_history.stat.exists and not bash_history.stat.islnk
 
-- name: Extra | Create link to bash history file
+- name: Extra | Create shared bash history file
+  command: touch /vagrant/shared/dot_bash_history
+  when: not bash_history.stat.exists
+
+- name: Extra | Create link to shared bash history file
   file: path=/home/vagrant/.bash_history
         src=/vagrant/shared/dot_bash_history
         state=link

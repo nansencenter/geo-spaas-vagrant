@@ -1,11 +1,11 @@
-- name: Django app deploy | create new django project
-  sudo_user: '{{ django_app_user }}'
+- name: Django deploy | create new django project
+  become_user: '{{ django_app_user }}'
   shell: 'django-admin.py startproject {{ django_application_name }}'
   args:
     chdir: '{{ django_deploy_root_path }}'
     creates: '{{ django_project_path }}'
 
-- name: Django app deploy | create site_media and static directories
+- name: Django deploy | create site_media and static directories
   file: path='{{ django_project_path }}/{{ django_application_name }}/{{ item }}'
         state=directory
         owner={{ django_app_user }}
@@ -14,7 +14,7 @@
       - site_media  # All site media files
       - static  # The folder for additional static files
 
-- name: Django app deploy | create subfolders for site_media
+- name: Django deploy | create subfolders for site_media
   file: path='{{ django_project_path }}/{{ django_application_name }}/site_media/{{ item }}'
         state=directory
         owner={{ django_app_user }}
@@ -25,16 +25,75 @@
       - downloads
       - products
 
-- name: Django app deploy | create nansencloud subfolder in site_media/media/
-  file: path='{{ django_project_path }}/{{ django_application_name }}/site_media/media/nansencloud'
+- name: Django deploy | create nansencloud subfolder in site_media/media/
+  file: path='{{ django_project_path }}/{{ django_application_name }}/site_media/media/{{ geospaas_app }}'
         state=directory
         owner={{ django_app_user }}
         group={{ django_app_user }}
 
-- name: Django app deploy | change settings.py
-  template: src=../templates/settings.py
-            dest='{{ django_project_path }}/{{ django_application_name }}/settings.py'
+- name: Django deploy | add apps to settings.py
+  blockinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    insertafter: "INSTALLED_APPS"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}"
+    block: |
+      '{{ item }}',
+  with_items:
+    - "{{ geospaas_core_apps }}"
 
-- name: Django app deploy | change urls.py
-  template: src=../templates/urls.py
-            dest='{{ django_project_path }}/{{ django_application_name }}/urls.py'
+- name: Django deploy | replace DB backend
+  replace:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    regexp: 'django.db.backends.sqlite3'
+    replace: 'django.contrib.gis.db.backends.spatialite'
+
+- name: Django deploy | replace DB filename
+  replace:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    regexp: 'db.sqlite3'
+    replace: 'geodjango.db'
+
+- name: Django deploy | add LEAFLET_CONFIG
+  blockinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    marker: "# {mark} ANSIBLE MANAGED BLOCK LEAFLET"
+    block: |
+        LEAFLET_CONFIG = {
+            'DEFAULT_CENTER': (30.0, 0.0),
+            'DEFAULT_ZOOM': 1,
+            'MIN_ZOOM': 1,
+            'MAX_ZOOM': 10,
+            'RESET_VIEW': False,
+            'SRID': 3857,
+            'PLUGINS': {
+                'forms': {
+                    'auto-include': True
+                }
+            }
+        }
+
+- name: Django deploy | add django.conf.urls.include
+  lineinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
+    insertafter: BOF
+    line: from django.conf.urls import include
+
+- name: Django deploy | add geospaas.urls
+  lineinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
+    insertafter: urlpatterns
+    line: "    url(r'^', include('geospaas.urls')),"
+
+- name: Django deploy | replace ALLOWED_HOSTS
+  lineinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    insertafter: EOF
+    line: "ALLOWED_HOSTS = ['*']"
+
+#- name: Django app deploy | change settings.py
+#  template: src=../templates/settings.py
+#            dest='{{ django_project_path }}/{{ django_application_name }}/settings.py'
+
+#- name: Django app deploy | change urls.py
+#  template: src=../templates/urls.py
+#            dest='{{ django_project_path }}/{{ django_application_name }}/urls.py'
