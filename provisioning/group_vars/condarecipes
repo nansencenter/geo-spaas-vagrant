@@ -1,2 +1,0 @@
----
-dev_sources_dir: "{{ shared_dir }}/condarecipes_vm"
