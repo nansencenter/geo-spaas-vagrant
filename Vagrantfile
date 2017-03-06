@@ -9,39 +9,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/trusty64"
 
-  config.vm.define "develop", autostart: false do |develop|
-    develop.vm.network :private_network, ip: "192.168.33.10"
-    # run django server: ./manage.py runserver 192.168.33.10:9090 let's you
+  config.vm.define "nansat", primary: true do |course|
+    course.vm.network :private_network, ip: "192.168.33.10"
   end
 
-  config.vm.define "course", primary: true do |course|
-    course.vm.network :private_network, ip: "192.168.33.11"
+  config.vm.define "course", autostart: false do |develop|
+    develop.vm.network :private_network, ip: "192.168.33.11"
   end
 
-  config.vm.define "condarecipes", autostart: false do |condarecipes|
-    condarecipes.vm.network :private_network, ip: "192.168.33.13"
-  end
-
-  config.vm.define "thredds", autostart: false do |thredds|
-    thredds.vm.network :private_network, ip: "192.168.33.15"
-
-    thredds.vm.provider "virtualbox" do |v|
-      v.memory = 6000
-      v.cpus = 4
-    end
-
-  end
-
-  config.vm.define "pyoai", autostart: false do |pyoai|
-    pyoai.vm.box_url = "https://atlas.hashicorp.com/geerlingguy/boxes/centos7"
-    pyoai.vm.box = "geerlingguy/centos7"
-    pyoai.vm.network :private_network, ip: "192.168.33.18"
-
-    pyoai.vm.provider "virtualbox" do |v|
-      v.memory = 2000
-      v.cpus = 1
-    end
-
+  config.vm.define "catalog", autostart: false do |catalog|
+    catalog.vm.network :private_network, ip: "192.168.33.12"
   end
 
   config.vm.provider "virtualbox" do |v|
