@@ -3,14 +3,12 @@
 #- include: setup_ubuntu.yml
 #  when: setup_ubuntu is defined and setup_ubuntu
 
-- include: extra.yml
-  when: catalog_extra is defined and catalog_extra
-
-#- include: leeFilter.yml - not working..
+#- include: extra.yml
+#  when: catalog_extra is defined and catalog_extra
 
 #- include: setup_python.yml
 
-#- include: django_deploy.yml
+- include: django_deploy.yml
 
 #- include: setup_db.yml
 #  when: add_sample_data is defined and add_sample_data 

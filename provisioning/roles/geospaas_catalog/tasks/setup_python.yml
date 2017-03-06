@@ -8,7 +8,7 @@
   lineinfile: "dest={{ home_dir }}/.condarc line='ssl_verify: false'"
 
 - name: Setup Python | Install Nansencloud requirements
-  shell: 'conda install -q --yes --copy {{ item }}'
+  shell: 'conda install -q --yes --copy -c conda-forge {{ item }}'
   with_items:
     django=1.9
     scikit-learn
@@ -36,24 +36,24 @@
     chdir: "{{ ansible_env.HOME }}/pysqlite/"
   when: git_pysqlite.changed and use_local_database is defined and use_local_database
 
-- name: Setup Python | Update/checkout Nansen-Cloud Django
-  git: repo=https://github.com/nansencenter/nansen-cloud
-       dest="{{ dev_sources_dir }}/nansen-cloud"
-       version="{{ nansencloud_version }}"
+- name: Setup Python | Update/checkout Geo-SPaaS Django
+  git: repo="https://github.com/nansencenter/{{ geospaas_repo }}"
+       dest="{{ dev_sources_dir }}/{{ geospaas_repo }}"
+       version="{{ geospaas_version }}"
        update=yes
-       force="{{ git_force_nansencloud }}"
+       force="{{ git_force_geospaas }}"
   tags:
-    - update-nansencloud
+    - update-geospaas-catalog
 
-- name: Setup Python | Create link from Python dist-packages to nansen-cloud
-  file: path='{{ python_dist_packages }}/nansencloud'
-        src='{{ dev_sources_dir }}/nansen-cloud/nansencloud'
+- name: Setup Python | Create link from Python dist-packages to geo-spaas-catalog
+  file: path='{{ python_dist_packages }}/{{ geospaas_app }}'
+        src='{{ dev_sources_dir }}/{{ geospaas_repo }}/{{ geospaas_app }}'
         state=link
         force=yes
 
 - name: Setup Python | Create link from home directory to nansen-cloud
-  file: path="{{ home_dir }}/nansen-cloud"
-        src='{{ dev_sources_dir }}/nansen-cloud'
+  file: path="{{ home_dir }}/{{ geospaas_repo }}"
+        src="{{ dev_sources_dir }}/{{ geospaas_repo }}"
         state=link
         force=yes
   when: create_home_dir_link is defined and create_home_dir_link

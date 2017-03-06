@@ -13,10 +13,10 @@
 
 - hosts: geospaas_core
   roles:
-    - localvm
-    - conda
-    - nansat
-    - sample_datasets
+#    - localvm
+#    - conda
+#    - nansat
+#    - sample_datasets
     - geospaas_catalog
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"

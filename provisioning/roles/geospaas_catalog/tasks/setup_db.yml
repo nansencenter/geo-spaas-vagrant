@@ -2,9 +2,9 @@
 - name: Setup DB | Run makemigrations on Nansen-Cloud project
   django_manage: >
       command=makemigrations
-      app_path='{{ dev_sources_dir }}/nansen-cloud/project'
-      settings='project.settings'
-      pythonpath='{{ dev_sources_dir }}/nansen-cloud/project'
+      app_path='{{ django_project_path }}'
+      settings='{{ django_application_name }}.settings'
+      pythonpath='{{ django_project_path }}'
   tags:
     - update-nansencloud
   when: make_migrations is defined and make_migrations
@@ -12,9 +12,9 @@
 - name: Setup DB | Run migrate on Nansen-Cloud project
   django_manage: >
       command=migrate
-      app_path='{{ dev_sources_dir }}/nansen-cloud/project'
-      settings='project.settings'
-      pythonpath='{{ dev_sources_dir }}/nansen-cloud/project'
+      app_path='{{ django_project_path }}'
+      settings='{{ django_application_name }}.settings'
+      pythonpath='{{ django_project_path }}'
   tags:
     - update-nansencloud
   when: run_migrate is defined and run_migrate
@@ -22,5 +22,5 @@
 - name: Setup DB | Update vocabularies
   django_manage: >
       command='update_vocabularies'
-      app_path='{{ dev_sources_dir }}/nansen-cloud/project'
+      app_path='{{ django_project_path }}'
   when: run_migrate is defined and run_migrate
