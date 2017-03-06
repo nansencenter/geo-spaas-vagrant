@@ -1,14 +1,9 @@
 ---
-- hosts: develop
+- hosts: nansat
   roles:
     - localvm
     - conda
     - nansat
-    - sample_datasets
-    - openwind
-    - nansencloud
-    - doppler
-    - liclipse
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
@@ -26,47 +21,37 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
-- hosts: condarecipes
+- hosts: catalog
   roles:
     - localvm
     - conda
-    - condarecipes
+    - nansat
+    - sample_datasets
+    - nansencloud
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
-- hosts: processing
-  roles:
-    - conda
-    - nansat
-    - openwind
-    - nansencloud
-
-- hosts: webserver
-  roles:
-    - conda
-    - nansat
-    - openwind
-    - nansencloud
-    - webserver
-
-- hosts: thredds
+- hosts: doppler
   roles:
     - localvm
-    - thredds
-
-- hosts: pyoai
-  roles:
-    - pyoai
+    - conda
+    - nansat
+    - sample_datasets
+    - openwind
+    - nansencloud
+    - doppler
+    - liclipse
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
 
 - hosts: travis
   roles:
     - conda
     - nansat
-    - course
-    - openwind
-    - nansencloud
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"

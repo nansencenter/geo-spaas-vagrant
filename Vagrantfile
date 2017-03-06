@@ -21,6 +21,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     catalog.vm.network :private_network, ip: "192.168.33.12"
   end
 
+  config.vm.define "doppler", autostart: false do |catalog|
+    catalog.vm.network :private_network, ip: "192.168.33.13"
+  end
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 4000
     v.cpus = 2
