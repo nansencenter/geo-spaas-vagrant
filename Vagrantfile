@@ -9,20 +9,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/trusty64"
 
-  config.vm.define "nansat", primary: true do |course|
+  config.vm.define "course", primary: true do |course|
     course.vm.network :private_network, ip: "192.168.33.10"
   end
 
-  config.vm.define "course", autostart: false do |develop|
-    develop.vm.network :private_network, ip: "192.168.33.11"
+  config.vm.define "geospaas_core", autostart: false do |geospaas_core|
+    geospaas_core.vm.network :private_network, ip: "192.168.33.11"
   end
 
-  config.vm.define "catalog", autostart: false do |catalog|
-    catalog.vm.network :private_network, ip: "192.168.33.12"
-  end
-
-  config.vm.define "doppler", autostart: false do |catalog|
-    catalog.vm.network :private_network, ip: "192.168.33.13"
+  config.vm.define "doppler", autostart: false do |doppler|
+    doppler.vm.network :private_network, ip: "192.168.33.12"
   end
 
   config.vm.provider "virtualbox" do |v|

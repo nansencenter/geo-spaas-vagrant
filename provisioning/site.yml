@@ -1,14 +1,4 @@
 ---
-- hosts: nansat
-  roles:
-    - localvm
-    - conda
-    - nansat
-  environment:
-    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    GDAL_DATA: "{{ conda_dir }}/share/gdal"
-    LC_ALL: "en_US.UTF-8"
-
 - hosts: course
   roles:
     - localvm
@@ -21,13 +11,13 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
-- hosts: catalog
+- hosts: geospaas_core
   roles:
     - localvm
     - conda
     - nansat
     - sample_datasets
-    - catalog
+    - geospaas_catalog
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
@@ -39,8 +29,8 @@
     - conda
     - nansat
     - sample_datasets
+    - geospaas_catalog
     - openwind
-    - nansencloud
     - doppler
     - liclipse
   environment:

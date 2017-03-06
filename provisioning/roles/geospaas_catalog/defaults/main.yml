@@ -4,8 +4,7 @@ make_migrations: yes
 run_migrate: yes
 git_force_nansencloud: no
 create_home_dir_link: yes
-nansencloud_extra: yes
-openwind: yes
+catalog_extra: yes
 add_sample_data: yes
 private_sample_files: []
 
@@ -15,6 +14,6 @@ private_sample_files: []
 django_app_user: 'vagrant'
 
 # Application folders
-django_deploy_root_path: '/vagrant/shared/develop_vm/nansen-cloud'
+django_deploy_root_path: '/vagrant/shared/catalog_vm/nansen-cloud'
 django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
 django_application_name: 'project'
