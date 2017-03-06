@@ -38,6 +38,19 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
+- hosts: metsarvind
+  roles:
+    - localvm
+    - conda
+    - sample_datasets
+    - nansat
+    - geospaas_catalog
+    - openwind
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+
 - hosts: travis
   roles:
     - conda
