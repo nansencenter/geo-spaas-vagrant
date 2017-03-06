@@ -1,9 +1,0 @@
----
-- name: Pip install cython
-  pip: name={{ item }}
-  with_items:
-    - cython
-
-- name: LeeFilter | Install LeeFilter
-  pip: name='git+https://github.com/josephmeiring/LeeFilter' editable=False
-

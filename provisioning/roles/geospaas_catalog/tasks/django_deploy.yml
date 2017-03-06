@@ -78,6 +78,18 @@
     insertafter: BOF
     line: from django.conf.urls import include
 
+- name: Django deploy | add geospaas.urls
+  lineinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
+    insertafter: urlpatterns
+    line: "    url(r'^', include('geospaas.urls')),"
+
+- name: Django deploy | replace ALLOWED_HOSTS
+  lineinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    insertafter: EOF
+    line: "ALLOWED_HOSTS = ['*']"
+
 #- name: Django app deploy | change settings.py
 #  template: src=../templates/settings.py
 #            dest='{{ django_project_path }}/{{ django_application_name }}/settings.py'
