@@ -9,7 +9,7 @@
     - "{{ sample_files }}"
 
 - name: Download sample datasets
-  get_url: url="{{ sample_data_url }}/{{ item.mapper }}/{{ item.name }}" dest="{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}" force=no
+  get_url: url="{{ sample_data_url }}/{{ item.mapper }}/{{ item.name }}" dest="{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}" force=no timeout=200
   with_items:
     - "{{ sample_files }}"
   ignore_errors: yes
