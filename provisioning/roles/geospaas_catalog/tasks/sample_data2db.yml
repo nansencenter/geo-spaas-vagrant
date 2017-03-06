@@ -1,5 +1,5 @@
 ---
-- name: Sample data to database | Add public sample images to db
+- name: Sample data to database | Add public sample datasets to db
   django_manage: >
       command='ingest file://localhost{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}'
       app_path='{{ django_project_path }}'
@@ -7,7 +7,7 @@
     - '{{ sample_files }}'
   ignore_errors: yes
 
-- name: Sample data to database | Add private sample images to db
+- name: Sample data to database | Add private sample datasets to db
   django_manage: >
       command='ingest file://localhost{{ mount_name }}/{{ item.name }}'
       app_path='{{ django_project_path }}'

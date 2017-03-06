@@ -7,5 +7,8 @@
 [doppler]
 192.168.33.12 ansible_connection=local
 
+[metsarvind]
+192.168.33.14 ansible_connection=local
+
 [travis]
 localhost
