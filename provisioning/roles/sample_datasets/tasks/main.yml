@@ -1,30 +1,35 @@
 ---
 # file: roles/sample_datasets/tasks/main.yml
-- name: Create test data folder
+- name: Datasets | Create test data folder
   file: path="{{ sample_data_dir }}" state=directory
 
-- name: Create sample data subfolders (named after nansat mappers)
+- name: Datasets | Create sample data subfolders (named after nansat mappers)
   file: path="{{ sample_data_dir }}/{{ item.mapper }}" state=directory
   with_items:
     - "{{ sample_files }}"
 
-- name: Download sample datasets
-  get_url: url="{{ sample_data_url }}/{{ item.mapper }}/{{ item.name }}" dest="{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}" force=no timeout=200
+- name: Datasets | Download sample datasets
+  get_url:
+    url: "{{ sample_data_url }}/{{ item.mapper }}/{{ item.name }}"
+    dest: "{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}"
+    force: no
+    timeout: 100
   with_items:
     - "{{ sample_files }}"
   ignore_errors: yes
 
-- name: Download Nansat landmask
+- name: Datasets | Download Nansat landmask
   get_url:
     url: "{{ ftp_nansat_landmask }}/{{ nansat_landmask_file }}"
     dest: "{{ shared_dir }}/{{ nansat_landmask_file }}"
     force: no
+    timeout: 100
   ignore_errors: yes
 
 - name: Create Nansat landmask data folder
   file: path="{{ shared_dir }}/MOD44W" state=directory
 
-- name: Extract Nansat landmask
+- name: Datasets | Extract Nansat landmask
   unarchive:
     copy: no
     src: "{{ shared_dir }}/{{ nansat_landmask_file }}"
@@ -32,4 +37,6 @@
     force: no
   ignore_errors: yes
 
+- name: Datasets | Add MOD44WPATH to .bashrc
+  lineinfile: dest="{{ home_dir }}/.bashrc" line="export MOD44WPATH={{ shared_dir }}/MOD44W"
 
