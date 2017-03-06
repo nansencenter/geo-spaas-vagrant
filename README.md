@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nansencenter/geo-spaas-vagrant.svg?branch=master)](https://travis-ci.org/nansencenter/geo-spaas-vagrant)
+
 Configuration of Nansen-Cloud provisioning with vagrant
 =======================================================
 All Virtual machines (VMs) use miniconda to install python and various libraries.
