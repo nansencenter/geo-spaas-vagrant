@@ -39,7 +39,7 @@
     block: |
       '{{ item }}',
   with_items:
-    - "{{ geospaas_core_apps }}"
+    - "{{ geospaas_core_apps + geospaas_xtra_apps}}"
 
 - name: Django deploy | replace DB backend
   replace:
@@ -82,18 +82,12 @@
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
     insertafter: urlpatterns
-    line: "    url(r'^', include('geospaas.urls')),"
+    line: "{{ item }}"
+  with_items:
+    - "{{ geospaas_core_urls + geospaas_xtra_urls}}"
 
 - name: Django deploy | replace ALLOWED_HOSTS
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
     insertafter: EOF
     line: "ALLOWED_HOSTS = ['*']"
-
-#- name: Django app deploy | change settings.py
-#  template: src=../templates/settings.py
-#            dest='{{ django_project_path }}/{{ django_application_name }}/settings.py'
-
-#- name: Django app deploy | change urls.py
-#  template: src=../templates/urls.py
-#            dest='{{ django_project_path }}/{{ django_application_name }}/urls.py'

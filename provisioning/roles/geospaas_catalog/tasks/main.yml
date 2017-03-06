@@ -1,7 +1,4 @@
 ---
-- include: extra.yml
-  when: catalog_extra is defined and catalog_extra
-
 - include: setup_python.yml
 
 - include: django_deploy.yml

@@ -1,6 +1,5 @@
 ---
 #nansencloud\tasks\setup_python.yml
-
 - name: Setup Python | Create condarc
   file: "path={{ home_dir }}/.condarc state=touch"
 
@@ -56,5 +55,3 @@
         src="{{ dev_sources_dir }}/{{ geospaas_repo }}"
         state=link
         force=yes
-  when: create_home_dir_link is defined and create_home_dir_link
-

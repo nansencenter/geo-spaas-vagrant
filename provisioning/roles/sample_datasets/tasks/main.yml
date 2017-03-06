@@ -40,3 +40,5 @@
 - name: Datasets | Add MOD44WPATH to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line="export MOD44WPATH={{ shared_dir }}/MOD44W"
 
+- name: Datasets | Add MAPPER_TEST_DATA_DIR to .bashrc
+  lineinfile: dest="{{ home_dir }}/.bashrc" line="export MAPPER_TEST_DATA_DIR={{ sample_data_dir }}"
