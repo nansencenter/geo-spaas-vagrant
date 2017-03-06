@@ -12,7 +12,7 @@
 - name: Python | Install Nansat requirements
   shell: 'conda install -q --yes --copy -c conda-forge {{ item }}'
   with_items:
-    qt=4.8.7=0
+    qt
     numpy
     scipy
     matplotlib
@@ -24,9 +24,6 @@
     jupyter
     gdal
     pillow
-
-#Note: jupyter installs "certifi" which breaks the ssl-certificate verification, so that conda partially breaks (at least on centos)
-#- need to disable checking certificates for now - FIX THIS (task "fixing certifi breaking things")
 
 - name: Python | Copy downloaded packages to cached conda_pkgs
   shell: 'cp {{ conda_dir }}/pkgs/*.[bt][zx][2t] {{ cache_dir }}/conda_pkgs/'
