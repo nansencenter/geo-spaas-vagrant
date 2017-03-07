@@ -2,7 +2,7 @@
 
 Configuration of Nansen-Cloud provisioning with vagrant
 =======================================================
-All Virtual machines (VMs) use miniconda to install python and various libraries.
+All virtual machines use miniconda to install python and various libraries.
 
 Usage
 =====
@@ -13,12 +13,10 @@ vagrant up
 ```
 Requires vagrant >= 1.8.4
 
-Virtual machines:
+Stable virtual machines:
 =================
-* nansat : 192.168.33.10
-* course : 192.168.33.11
-* catalog : 192.168.33.12
-* doppler : 192.168.33.13
+* course : 192.168.33.10
+* geospaas_core : 192.168.33.11
 
 Shared directories
 ==================
@@ -27,9 +25,6 @@ Shared directories
   * conda_pkgs: cached conda packages
   * test_data: sample data
 
- * /vagrant/shared/catalog_vm -> geo-spaas-vagrant/shared/catalog_vm
-  * this directory is specific for virtual machine
-  * nansat
-  * geo-spaas-catalog
-
-NB! **You better destroy all your machines before git clone**
+ * /vagrant/shared/course_vm -> geo-spaas-vagrant/shared/course_vm
+  * this directory is specific for a virtual machine
+  
