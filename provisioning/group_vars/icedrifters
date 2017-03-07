@@ -1,5 +1,5 @@
 ---
-dev_sources_dir: "{{ shared_dir }}/geospaas_core_vm"
+dev_sources_dir: "{{ shared_dir }}/icedrifters_vm"
 
 pythesint_version: master
 nansat_version: develop
