@@ -1,3 +1,5 @@
+---
+#geo-spaas-vagrant\tasks\django_deploy.yml
 - name: Django deploy | create new django project
   become_user: '{{ django_app_user }}'
   shell: 'django-admin.py startproject {{ django_application_name }}'
@@ -5,11 +7,30 @@
     chdir: '{{ django_deploy_root_path }}'
     creates: '{{ django_project_path }}'
 
-- name: Django deploy | create static directory
-  file: path='{{ django_project_path }}/static'
+- name: Django deploy | create media directories
+  file: path='{{ item }}'
         state=directory
         owner={{ django_app_user }}
         group={{ django_app_user }}
+  with_items:
+    - "{{ geospaas_static_root }}"
+    - "{{ geospaas_media_root }}"
+    - "{{ geospaas_download_root }}"
+    - "{{ geospaas_products_root }}"
+    - "{{ django_project_path }}/static"
+
+- name: Django deploy | add _root directories to settings.py
+  blockinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    insertafter: EOF
+    block: |
+        STATIC_ROOT = "{{ geospaas_static_root }}"
+        MEDIA_ROOT =  "{{ geospaas_media_root }}"
+        DOWNLOAD_ROOT = "{{ geospaas_download_root }}"
+        PRODUCTS_ROOT = "{{ geospaas_products_root }}"
+        STATICFILES_DIRS = [
+        "{{ django_project_path }}/static",
+        ]
 
 - name: Django deploy | add apps to settings.py
   blockinfile:
@@ -33,27 +54,11 @@
     regexp: 'db.sqlite3'
     replace: 'geodjango.db'
 
-- name: Django deploy | add LEAFLET_CONFIG
-  blockinfile:
+- name: Django deploy | replace ALLOWED_HOSTS
+  lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
-    marker: "# {mark} ANSIBLE MANAGED BLOCK LEAFLET"
-    block: |
-        LEAFLET_CONFIG = {
-            'DEFAULT_CENTER': (30.0, 0.0),
-            'DEFAULT_ZOOM': 1,
-            'MIN_ZOOM': 1,
-            'MAX_ZOOM': 10,
-            'RESET_VIEW': False,
-            'SRID': 3857,
-            'PLUGINS': {
-                'forms': {
-                    'auto-include': True
-                }
-            }
-        }
-        STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static")
-        ]
+    insertafter: EOF
+    line: "ALLOWED_HOSTS = ['*']"
 
 - name: Django deploy | add django.conf.urls.include
   lineinfile:
@@ -69,8 +74,12 @@
   with_items:
     - "{{ geospaas_core_urls + geospaas_xtra_urls}}"
 
-- name: Django deploy | replace ALLOWED_HOSTS
-  lineinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+- name: Django deploy | add media url
+  blockinfile:
+    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
     insertafter: EOF
-    line: "ALLOWED_HOSTS = ['*']"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK MEDIA URL"
+    block: |
+        from django.conf import settings
+        from django.conf.urls.static import static
+        urlpatterns += [static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)]
