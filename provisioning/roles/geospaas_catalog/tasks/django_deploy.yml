@@ -24,6 +24,7 @@
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
     insertafter: EOF
     block: |
+        MEDIA_URL = '/site_media/media/'
         STATIC_ROOT = "{{ geospaas_static_root }}"
         MEDIA_ROOT =  "{{ geospaas_media_root }}"
         DOWNLOAD_ROOT = "{{ geospaas_download_root }}"
@@ -31,6 +32,7 @@
         STATICFILES_DIRS = [
         "{{ django_project_path }}/static",
         ]
+
 
 - name: Django deploy | add apps to settings.py
   blockinfile:
@@ -60,26 +62,20 @@
     insertafter: EOF
     line: "ALLOWED_HOSTS = ['*']"
 
-- name: Django deploy | add django.conf.urls.include
+- name: Django deploy | Add include in urls.py
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
     insertafter: BOF
-    line: from django.conf.urls import include
+    line: "{{ item }}"
+  with_items:
+    - "from django.conf.urls import include"
+    - "from django.conf import settings"
+    - "from django.conf.urls.static import static"
 
-- name: Django deploy | add geospaas.urls
+- name: Django deploy | add urlpatterns to urls.py
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
     insertafter: urlpatterns
     line: "{{ item }}"
   with_items:
     - "{{ geospaas_core_urls + geospaas_xtra_urls}}"
-
-- name: Django deploy | add media url
-  blockinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
-    insertafter: EOF
-    marker: "# {mark} ANSIBLE MANAGED BLOCK MEDIA URL"
-    block: |
-        from django.conf import settings
-        from django.conf.urls.static import static
-        urlpatterns += [static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)]
