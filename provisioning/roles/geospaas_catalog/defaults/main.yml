@@ -21,6 +21,7 @@ geospaas_core_apps:
 
 geospaas_core_urls:
   - "    url(r'^', include('geospaas.urls')),"
+  - "    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[0],"
 
 geospaas_xtra_apps: []
 
@@ -32,3 +33,7 @@ django_deploy_root_path: '{{ dev_sources_dir }}/{{ geospaas_repo }}'
 django_application_name: 'project'
 django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
 
+geospaas_static_root: "{{ dev_sources_dir }}/site_media/static"
+geospaas_media_root: "{{ dev_sources_dir }}/site_media/media/"
+geospaas_download_root: "{{ dev_sources_dir }}/site_media/download"
+geospaas_products_root: "{{ dev_sources_dir }}/site_media/products"

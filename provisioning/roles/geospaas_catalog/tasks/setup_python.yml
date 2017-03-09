@@ -1,5 +1,5 @@
 ---
-#nansencloud\tasks\setup_python.yml
+#geo-spaas-vagrant\tasks\setup_python.yml
 - name: Setup Python | Create condarc
   file: "path={{ home_dir }}/.condarc state=touch"
 
