@@ -1,0 +1,18 @@
+---
+- name: Icedrifters | Install OpenCV
+  shell: 'conda install -q --yes --copy -c conda-forge {{ item }}'
+  with_items:
+    opencv
+  
+- name: Icedrifters | Update/checkout sea_ice_drift
+  git: repo=https://github.com/nansencenter/sea_ice_drift
+       dest="{{ dev_sources_dir }}/sea_ice_drift"
+       version=add_mcc_functions
+       update=yes
+
+- name: Icedrifters | Create link from Python dist-packages to sea_ice_drift
+  file: path='{{ python_dist_packages }}/sea_ice_drift'
+        src='{{ dev_sources_dir }}/sea_ice_drift/sea_ice_drift'
+        state=link
+        force=yes
+

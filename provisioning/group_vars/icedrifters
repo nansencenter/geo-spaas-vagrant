@@ -7,6 +7,6 @@ geospaas_version: sea_ice_drifters
 add_sample_data: yes
 mount_network_folders: yes
 
-geospaas_xtra_apps: [geospaas.processing_sar_nrcs]
+geospaas_xtra_apps: [geospaas.processing_sar_nrcs, geospaas.processing_sar_icedrift]
 
 geospaas_xtra_urls: []
