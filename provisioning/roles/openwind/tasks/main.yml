@@ -1,4 +1,3 @@
 ---
 - include: openwind.yml
-  when: openwind is defined and openwind
 
