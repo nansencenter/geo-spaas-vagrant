@@ -14,7 +14,7 @@
     coverage
     psycopg2
 
-- name: Setup Python | Install nansen-cloud requirements
+- name: Setup Python | Install django-geo-spaas requirements
   pip: name={{ item }}
   with_items:
     - django-forms-bootstrap
@@ -50,7 +50,7 @@
         state=link
         force=yes
 
-- name: Setup Python | Create link from home directory to nansen-cloud
+- name: Setup Python | Create link from home directory to django-geo-spaas
   file: path="{{ home_dir }}/{{ geospaas_repo }}"
         src="{{ dev_sources_dir }}/{{ geospaas_repo }}"
         state=link
