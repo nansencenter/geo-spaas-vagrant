@@ -7,6 +7,7 @@ openwind_version: develop
 geospaas_version: master
 add_sample_data: yes
 mount_network_folders: yes
+test_nansat: no
 
 #geospaas_xtra_apps: []
 

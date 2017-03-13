@@ -14,6 +14,7 @@ nansat_version: develop
 geospaas_version: master
 add_sample_data: yes
 mount_network_folders: yes
+test_nansat: yes
 
 sample_files:
   - {name: MER_FRS_1PNPDK20120303_093810_000000333112_00180_52349_3561.N1, mapper: meris_l1}
