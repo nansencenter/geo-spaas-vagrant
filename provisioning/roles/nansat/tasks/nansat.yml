@@ -30,7 +30,7 @@
         force=yes
 
 - name: nansat | Create link from Python dist-packages to nansat_integration_tests
-  file: path='{{ python_dist_packages }}/nansat'
+  file: path='{{ python_dist_packages }}/nansat_integration_tests'
         src='{{ dev_sources_dir }}/nansat/nansat_integration_tests'
         state=link
         force=yes
