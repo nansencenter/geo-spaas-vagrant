@@ -29,6 +29,12 @@
         state=link
         force=yes
 
+- name: nansat | Create link from Python dist-packages to nansat_integration_tests
+  file: path='{{ python_dist_packages }}/nansat'
+        src='{{ dev_sources_dir }}/nansat/nansat_integration_tests'
+        state=link
+        force=yes
+
 - name: nansat | Nosetests
   shell: "nosetests nansat"
   when: test_nansat is defined and test_nansat
