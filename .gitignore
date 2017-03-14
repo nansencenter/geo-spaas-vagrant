@@ -1,5 +1,6 @@
 .vagrant/
 python/
 shared/
+provisioning/site.retry
 provisioning/roles/nansencloud/templates/settings.py
 provisioning/roles/localvm/defaults/main.yml

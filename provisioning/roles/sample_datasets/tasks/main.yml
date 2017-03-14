@@ -18,13 +18,21 @@
     - "{{ sample_files }}"
   ignore_errors: yes
 
-## Optionally...:
-#- name: Sample datasets | Extract zipped datasets
-#  unarchive: 
-#    remote_src: yes
-#    src:
-#  with_items:
-#    find:
+  #- name: Sample datasets | Create folder for temporary storage of unarchived sample datasets
+  #  file: path="{{ home_dir }}/unarchived" state=directory
+  #
+  #- name: Sample datasets | Extract zipped datasets
+  #  unarchive: 
+  #    remote_src: yes
+  #    src: "{{ item }}"
+  #    dest: "{{ home_dir }}/unarchived/
+  #  with_items:
+  #    find:
+  #      paths: "{{ sample_data_dir }}"
+  #      patterns: "*.zip"
+  #      recurse: yes
+  #
+  # NOW - how to move the extracted data to the correct folder...?
 
 - name: Sample datasets | Download Nansat landmask
   get_url:
