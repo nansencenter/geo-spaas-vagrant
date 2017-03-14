@@ -2,7 +2,7 @@
 dev_sources_dir: "{{ shared_dir }}/metsarvind_vm"
 
 pythesint_version: master
-nansat_version: master
+nansat_version: metsarvind_updates
 openwind_version: develop
 geospaas_version: master
 add_sample_data: yes
