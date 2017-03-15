@@ -4,15 +4,5 @@
       command='ingest file://localhost{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}'
       app_path='{{ django_project_path }}'
   with_items:
-    - '{{ sample_files }}'
+    - '{{ gc_sample_files }}'
   ignore_errors: yes
-
-- name: GLOBCURRENT data to database | Add private sample datasets to db
-  django_manage: >
-      command='ingest file://localhost{{ mount_name }}/{{ item.name }}'
-      app_path='{{ django_project_path }}'
-  with_items:
-    - '{{ private_sample_files }}'
-  when: mount_name is defined and use_local_database is defined and use_local_database
-  ignore_errors: yes
-

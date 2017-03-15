@@ -1,3 +1,2 @@
 ---
-#- include: gc_data2db.yml
-
+- include: gc_data2db.yml
