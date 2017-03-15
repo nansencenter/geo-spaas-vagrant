@@ -52,6 +52,19 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
+- hosts: globcurrent
+  roles:
+    - localvm
+    - conda
+    - nansat
+    - sample_datasets
+    - geospaas_catalog
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+    CPL_ZIP_ENCODING: "UTF-8"
+
 - hosts: travis
   roles:
     - conda
