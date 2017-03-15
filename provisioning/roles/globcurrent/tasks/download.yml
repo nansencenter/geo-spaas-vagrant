@@ -1,0 +1,14 @@
+---
+- name: Globcurrent | Create drifter data folder
+  file: path="{{ drifter_data_folder }}" state=directory
+
+- name: Globcurrent | Download drifter datasets
+  get_url:
+    url: "{{ item }}"
+    dest: "{{ drifter_data_folder }}"
+    force: no
+    timeout: 100
+  with_items:
+    - "{{ drifters }}"
+  ignore_errors: yes
+
