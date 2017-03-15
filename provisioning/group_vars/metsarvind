@@ -1,5 +1,5 @@
 ---
-dev_sources_dir: "{{ shared_dir }}/metsarvind_vm"
+dev_sources_dir: "{{ shared_dir }}/src"
 
 pythesint_version: master
 nansat_version: metsarvind_updates

@@ -1,3 +1,2 @@
 ---
-dev_sources_dir: "{{ shared_dir }}/globcurrent_vm"
-
+dev_sources_dir: "{{ shared_dir }}/src"
