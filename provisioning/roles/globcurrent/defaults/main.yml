@@ -1,2 +1,8 @@
 ---
 gc_sample_files: []
+
+drifter_data_folder: {{ sample_data_dir }}/drifters
+
+drifters:
+  - ftp://ftp.aoml.noaa.gov/pub/phod/buoydata/buoydata_15001_sep16.dat.gz
+  - ftp://ftp.aoml.noaa.gov/pub/phod/buoydata/dirfl_15001_sep16.dat
