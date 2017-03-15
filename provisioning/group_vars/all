@@ -4,8 +4,8 @@ shared_dir: /vagrant/shared
 cache_dir: "{{ shared_dir }}"
 sample_data_dir: "{{ shared_dir }}/test_data"
 home_dir: /home/vagrant
-install_dir: "{{ shared_dir }}"
-conda_dir: "{{ shared_dir }}/miniconda"
+install_dir: "{{ home_dir }}"
+conda_dir: "{{ home_dir }}/miniconda"
 python_dist_packages: "{{ conda_dir }}/lib/python2.7/site-packages"
 
 # The following settings can be changed in group_vars/<vm name>
