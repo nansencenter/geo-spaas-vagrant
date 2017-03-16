@@ -12,3 +12,13 @@
     - "{{ drifters }}"
   ignore_errors: yes
 
+## The following fails... Manually unzip instead..
+#- name: Globcurrent | Unarchive gzip files
+#  unarchive:
+#    src: "{{ item }}"
+#    dest: "{{ drifter_data_folder }}"
+#    remote_src: yes
+#  with_items:
+#    - find:
+#      paths: "{{ drifter_data_folder }}"
+#      patterns: "*.gz"
