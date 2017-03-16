@@ -10,7 +10,6 @@ mount_network_folders: yes
 test_nansat: no
 
 #geospaas_xtra_apps: []
-
 #geospaas_xtra_urls: []
 
 ftp_openwind: ftp://ftp.nersc.no/pub/openwind

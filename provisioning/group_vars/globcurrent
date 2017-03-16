@@ -1,2 +1,10 @@
 ---
 dev_sources_dir: "{{ shared_dir }}/src"
+
+svp_drifters_repo: django-geo-spaas-svp-drifters
+svp_drifters_version: master
+svp_drifters_app: svp_drifters
+
+geospaas_xtra_apps:
+  - svp_drifters
+#geospaas_xtra_urls: []
