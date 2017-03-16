@@ -5,6 +5,15 @@
        dest="{{ dev_sources_dir }}/nansat-lectures/"
        update=yes
 
-- name: course | Add Ipython Notebook to crontab
+- name: course | Add Jupyter Notebook to crontab
   cron: name="Jupyter Notebook" special_time=reboot job="sleep 60; {{ conda_dir }}/bin/jupyter-notebook --ip=0.0.0.0 --no-browser --notebook-dir={{ dev_sources_dir }}/nansat-lectures/notebooks/ --NotebookApp.token=vagrant"
 
+- name: course | Check if Jupyter is running
+  shell: ps aux | grep jupyter | grep -v grep
+  ignore_errors: yes
+  changed_when: false
+  register: jupyter_status
+
+- name: course | Launch Jupyter Notebook
+  shell: "nohup {{ conda_dir }}/bin/jupyter-notebook --ip=0.0.0.0 --no-browser --notebook-dir={{ dev_sources_dir }}/nansat-lectures/notebooks/ --NotebookApp.token=vagrant > /dev/null 2>&1 &"
+  when: jupyter_status.rc != 0

@@ -1,7 +1,7 @@
 ---
 - name: GLOBCURRENT data to database | Add public sample datasets to db
   django_manage: >
-      command='ingest file://localhost{{ sample_data_dir }}/{{ item.mapper }}/{{ item.name }}'
+      command='ingest {{ item }}'
       app_path='{{ django_project_path }}'
   with_items:
     - '{{ gc_sample_files }}'

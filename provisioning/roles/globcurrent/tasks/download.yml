@@ -4,8 +4,8 @@
 
 - name: Globcurrent | Download drifter datasets
   get_url:
-    url: "{{ item }}"
-    dest: "{{ drifter_data_folder }}"
+    url: "{{ item.url }}/{{ item.file }}"
+    dest: "{{ drifter_data_folder }}/{{ item.file }}"
     force: no
     timeout: 100
   with_items:
