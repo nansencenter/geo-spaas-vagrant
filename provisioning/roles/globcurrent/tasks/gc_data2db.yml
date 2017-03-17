@@ -11,4 +11,5 @@
   django_manage: >
     command='ingest_svp_drifters {{ drifter_data_folder }}/dirfl_15001_sep16.dat {{ drifter_data_folder }}/buoydata_15001_sep16.dat'
     app_path='{{ django_project_path }}'
+  when: ingest_drifters is defined and ingest_drifters
   ignore_errors: yes

@@ -4,6 +4,7 @@ dev_sources_dir: "{{ shared_dir }}/src"
 svp_drifters_repo: django-geo-spaas-svp-drifters
 svp_drifters_version: master
 svp_drifters_app: svp_drifters
+ingest_drifters: yes
 
 geospaas_xtra_apps:
   - svp_drifters
