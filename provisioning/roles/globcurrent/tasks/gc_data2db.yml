@@ -14,6 +14,7 @@
   with_items:
     - '{{ gc_sample_uris }}'
   ignore_errors: yes
+  when: ingest_hyrax is defined and ingest_hyrax
 
 - name: Globcurrent | Add drifter datasets to db
   django_manage: >
