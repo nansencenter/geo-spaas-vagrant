@@ -2,23 +2,39 @@
 - name: Globcurrent | Create drifter data folder
   file: path="{{ drifter_data_folder }}" state=directory
 
-- name: Globcurrent | Download drifter datasets
+- name: Globcurrent | Download drifter metadata
+  stat:
+    path: "{{ drifter_data_folder }}/dirfl_15001_sep16.dat"
+  register: p
   get_url:
-    url: "{{ item.url }}/{{ item.file }}"
-    dest: "{{ drifter_data_folder }}/{{ item.file }}"
+    url: "{{ item.url }}/dirfl_15001_sep16.dat"
+    dest: "{{ drifter_data_folder }}/dirfl_15001_sep16.dat"
     force: no
     timeout: 100
-  with_items:
-    - "{{ drifters }}"
-  ignore_errors: yes
+  when: not p.stat.isreg
+  ignore_errors: no
 
-## The following fails... Manually unzip instead..
-#- name: Globcurrent | Unarchive gzip files
-#  unarchive:
-#    src: "{{ item }}"
-#    dest: "{{ drifter_data_folder }}"
-#    remote_src: yes
-#  with_items:
-#    - find:
-#      paths: "{{ drifter_data_folder }}"
-#      patterns: "*.gz"
+- name: Globcurrent | Download drifter data
+  stat:
+    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat"
+  register: p
+  stat:
+    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
+  register: q
+  get_url:
+    url: "{{ item.url }}/buoydata_15001_sep16.dat.gz"
+    dest: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
+    force: no
+    timeout: 100
+  when: not p.stat.isreg and not q.stat.isreg
+  ignore_errors: no
+
+- name: Globcurrent | Unarchive gzip files
+  stat:
+    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat"
+  register: p
+  unarchive:
+    src: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
+    dest: "{{ drifter_data_folder }}"
+    remote_src: yes
+  when: not p.stat.isreg
