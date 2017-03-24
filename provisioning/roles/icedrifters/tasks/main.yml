@@ -1,6 +1,6 @@
 ---
 - name: Install OpenCV
-  shell: 'conda install -q --yes --copy -c conda-forge {{ item }}'
+  shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
     opencv
   

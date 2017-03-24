@@ -23,7 +23,7 @@
     creates: '{{ conda_dir }}'
 
 - name: Conda | Update Miniconda
-  shell: 'conda update -q --yes --copy conda'
+  shell: 'conda update -q --yes conda'
 
 - name: Conda | Add PATH to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line="export PATH={{ conda_dir }}/bin:$PATH"
