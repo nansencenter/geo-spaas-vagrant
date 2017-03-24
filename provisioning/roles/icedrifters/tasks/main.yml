@@ -16,3 +16,19 @@
         state=link
         force=yes
 
+- name: Update/checkout django-sea-ice-drifters
+  git: repo=git@github.com:nansencenter/django-sea-ice-drifters.git
+       dest="{{ dev_sources_dir }}/django-sea-ice-drifters"
+       version=master
+       update=yes
+
+- name: Create link from Python dist-packages to sea_ice_drift
+  file: path='{{ python_dist_packages }}/django_sea_ice_drifters'
+        src='{{ dev_sources_dir }}/django-sea-ice-drifters/django_sea_ice_drifters'
+        state=link
+        force=yes
+
+- name: Set names of additional Django apps
+  set_fact:
+    geospaas_xtra_apps: ["django_sea_ice_drifters"]
+    geospaas_xtra_urls: ["url(r'^icedrift/', include('django_sea_ice_drifters.urls')),"]

@@ -54,11 +54,12 @@
 
 - hosts: icedrifters
   roles:
-    - localvm
-    - conda
-    - nansat
-    - geospaas_catalog
+#    - localvm
+#    - conda
+#    - nansat
+#    - geospaas_catalog
     - icedrifters
+    - geospaas_catalog  
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
