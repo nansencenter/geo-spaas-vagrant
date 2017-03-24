@@ -22,7 +22,7 @@ geospaas_products_root: "{{ dev_sources_dir }}/site_media/products"
 git_force: no
 
 core_repos_apps:
-  - {repo: "https://github.com/nansencenter/django-geo-spaas", app: geospaas, version: master}
+  - {url: "https://github.com/nansencenter", repo: django-geo-spaas, app: geospaas, version: master}
 
 geospaas_core_apps:
   - geospaas.vocabularies

@@ -1,10 +1,11 @@
 ---
 - name: Django extend | Update/checkout repositories
-  git: repo="{{ item.repo }}"
+  git: repo="{{ item.url }}/{{ item.repo }}"
        dest="{{ dev_sources_dir }}/{{ item.repo }}"
        version="{{ item.version }}"
        update=yes
        force="{{ git_force }}"
+       key_file=/vagrant/id_rsa
   with_items:
     - "{{ core_repos_apps + xtra_repos_apps}}"
 
