@@ -7,6 +7,12 @@
     chdir: '{{ django_deploy_root_path }}'
     creates: '{{ django_project_path }}'
 
+- name: Setup Python | Create link to Django project
+  file: path='{{ home_dir }}/{{ django_application_name }}'
+        src='{{ django_project_path }}'
+        state=link
+        force=yes
+
 - name: Django deploy | create media directories
   file: path='{{ item }}'
         state=directory

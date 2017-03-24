@@ -2,7 +2,7 @@
 # django_deploy
 django_app_user: 'vagrant'
 django_deploy_root_path: '{{ dev_sources_dir }}'
-django_application_name: 'gesopaas_project'
+django_application_name: 'geospaas_project'
 django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
 
 geospaas_static_root: "{{ dev_sources_dir }}/site_media/static"
