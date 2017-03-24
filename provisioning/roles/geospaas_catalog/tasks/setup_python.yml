@@ -9,10 +9,7 @@
 - name: Setup Python | Install Nansencloud requirements
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
-    django=1.9
-    scikit-learn
-    coverage
-    psycopg2
+    - "{{ conda_core_pkgs + conda_xtra_pkgs}}"
 
 - name: Setup Python | Install django-geo-spaas requirements
   pip: name={{ item }}

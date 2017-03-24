@@ -1,6 +1,6 @@
 ---
-- name: Setup Python | Update/checkout repositories
-  git: repo="https://github.com/nansencenter/{{ item.repo }}"
+- name: Django extend | Update/checkout repositories
+  git: repo="{{ item.repo }}"
        dest="{{ dev_sources_dir }}/{{ item.repo }}"
        version="{{ item.version }}"
        update=yes
@@ -8,7 +8,7 @@
   with_items:
     - "{{ core_repos_apps + xtra_repos_apps}}"
 
-- name: Setup Python | Create link from Python dist-packages to repositories
+- name: Django extend | Create link from Python dist-packages to repositories
   file: path='{{ python_dist_packages }}/{{ item.app }}'
         src='{{ dev_sources_dir }}/{{ item.repo }}/{{ item.app }}'
         state=link
@@ -16,7 +16,7 @@
   with_items:
     - "{{ core_repos_apps + xtra_repos_apps}}"
 
-- name: Django deploy | add apps to settings.py
+- name: Django extend | add apps to settings.py
   blockinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
     insertafter: "INSTALLED_APPS"
@@ -26,7 +26,7 @@
   with_items:
     - "{{ geospaas_core_apps + geospaas_xtra_apps}}"
 
-- name: Django deploy | add urlpatterns to urls.py
+- name: Django extend | add urlpatterns to urls.py
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
     insertafter: urlpatterns

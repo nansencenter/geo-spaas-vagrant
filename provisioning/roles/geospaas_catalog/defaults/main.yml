@@ -1,4 +1,12 @@
 ---
+# setup_python
+conda_core_pkgs:
+  - django=1.9
+  - coverage
+  - psycopg2
+conda_xtra_pkgs: []
+use_local_database: yes
+
 # django_deploy
 django_app_user: 'vagrant'
 django_deploy_root_path: '{{ dev_sources_dir }}'
@@ -14,7 +22,7 @@ geospaas_products_root: "{{ dev_sources_dir }}/site_media/products"
 git_force: no
 
 core_repos_apps:
-  - {repo: django-geo-spaas, app: geospaas, version: master}
+  - {repo: "https://github.com/nansencenter/django-geo-spaas", app: geospaas, version: master}
 
 geospaas_core_apps:
   - geospaas.vocabularies
@@ -33,7 +41,6 @@ geospaas_xtra_apps: []
 geospaas_xtra_urls: []
 
 # setup_db
-use_local_database: yes
 make_migrations: yes
 run_migrate: yes
 
