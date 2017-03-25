@@ -25,7 +25,7 @@
     - "{{ geospaas_products_root }}"
     - "{{ django_project_path }}/static"
 
-- name: Django deploy | add _root directories to settings.py
+- name: Django deploy | add variables to settings.py
   blockinfile:
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
     insertafter: EOF
@@ -38,6 +38,8 @@
         STATICFILES_DIRS = [
         "{{ django_project_path }}/static",
         ]
+        SERIALIZATION_MODULES = {"geojson": "django.contrib.gis.serializers.geojson",}
+        ALLOWED_HOSTS = ['*']
 
 - name: Django deploy | replace DB backend
   replace:
@@ -50,12 +52,6 @@
     dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
     regexp: 'db.sqlite3'
     replace: 'geodjango.db'
-
-- name: Django deploy | replace ALLOWED_HOSTS
-  lineinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
-    insertafter: EOF
-    line: "ALLOWED_HOSTS = ['*']"
 
 - name: Django deploy | Add include in urls.py
   lineinfile:
