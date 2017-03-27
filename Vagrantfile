@@ -26,7 +26,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "icedrifters", autostart: false do |icedrifters|
-    icedrifters.vm.network :private_network, ip: "192.168.33.15"
+    icedrifters.vm.network :private_network, ip: "192.168.33.16"
 
     icedrifters.vm.provider "virtualbox" do |v|
     v.memory = 6000
