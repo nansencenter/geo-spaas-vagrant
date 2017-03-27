@@ -17,6 +17,7 @@
     - django-forms-bootstrap
     - django-leaflet
     - ipdb
+    - pandas
 
 - name: Setup Python | Clone pysqlite
   git: repo=https://github.com/ghaering/pysqlite

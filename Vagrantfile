@@ -25,14 +25,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     metsarvind.vm.network :private_network, ip: "192.168.33.14"
   end
 
+  config.vm.define "globcurrent", autostart: false do |globcurrent|
+    globcurrent.vm.network :private_network, ip: "192.168.33.15"
+  end
+
   config.vm.define "icedrifters", autostart: false do |icedrifters|
     icedrifters.vm.network :private_network, ip: "192.168.33.16"
 
     icedrifters.vm.provider "virtualbox" do |v|
-    v.memory = 6000
-    v.cpus = 6
+      v.memory = 6000
+      v.cpus = 6
     end
-
   end
 
   config.vm.provider "virtualbox" do |v|

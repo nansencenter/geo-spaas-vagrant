@@ -1,0 +1,15 @@
+---
+gc_sample_files:
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2010/001/20100101000000-GLOBCURRENT-L4-CURgeo_0m-ALT_OI-v02.0-fv01.0.nc
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2010/002/20100102000000-GLOBCURRENT-L4-CURgeo_0m-ALT_OI-v02.0-fv01.0.nc
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2010/074/20100315000000-GLOBCURRENT-L4-CURgeo_0m-ALT_OI-v02.0-fv01.0.nc
+
+gc_sample_uris:
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2014/
+
+drifter_data_folder: "{{ sample_data_dir }}/drifters"
+aoml_url: ftp://ftp.aoml.noaa.gov/pub/phod/buoydata
+
+drifters:
+  - {url: "{{ aoml_url }}", file: buoydata_15001_sep16.dat.gz}
+  - {url: "{{ aoml_url }}", file: dirfl_15001_sep16.dat}

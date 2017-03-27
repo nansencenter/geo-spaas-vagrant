@@ -1,0 +1,19 @@
+---
+- include: download.yml
+
+- include: gc_data2db.yml
+
+- name: GlobCurrent | Update/checkout SVP drifters app
+  git: repo="https://github.com/nansencenter/{{ svp_drifters_repo }}"
+       dest="{{ dev_sources_dir }}/{{ svp_drifters_repo }}"
+       version="{{ svp_drifters_version }}"
+       update=yes
+       #force="{{ git_force_svp_drifters }}"
+  #tags:
+  #  - update-geospaas-catalog
+
+- name: GlobCurrent | Create link from Python dist-packages to django-geo-spaas-svp-drifters/svp_drifters catalog
+  file: path='{{ python_dist_packages }}/{{ svp_drifters_app }}'
+        src='{{ dev_sources_dir }}/{{ svp_drifters_repo }}/{{ svp_drifters_app }}'
+        state=link
+        force=yes
