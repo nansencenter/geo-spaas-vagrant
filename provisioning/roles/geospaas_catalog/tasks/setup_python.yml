@@ -6,18 +6,17 @@
 - name: Setup Python | Fix certifi breaking things
   lineinfile: "dest={{ home_dir }}/.condarc line='ssl_verify: false'"
 
-- name: Setup Python | Install Nansencloud requirements
+- name: Setup Python | Install django-geo-spaas requirements (conda)
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
     - "{{ conda_core_pkgs + conda_xtra_pkgs}}"
 
-- name: Setup Python | Install django-geo-spaas requirements
+- name: Setup Python | Install django-geo-spaas requirements (PIP)
   pip: name={{ item }}
   with_items:
     - django-forms-bootstrap
     - django-leaflet
     - ipdb
-    - pandas
 
 - name: Setup Python | Clone pysqlite
   git: repo=https://github.com/ghaering/pysqlite

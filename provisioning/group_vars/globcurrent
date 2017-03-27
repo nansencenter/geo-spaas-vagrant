@@ -1,8 +1,11 @@
 ---
 dev_sources_dir: "{{ shared_dir }}/src"
 
-ingest_drifters: no
+ingest_drifters: yes
 ingest_hyrax: yes
+
+conda_xtra_pkgs:
+  - pandas
 
 geospaas_xtra_apps:
   - svp_drifters

@@ -12,40 +12,8 @@
     - "{{ drifters }}"
   ignore_errors: yes
 
-## The following fails..
-#- name: Globcurrent | Download drifter metadata
-#  stat:
-#    path: "{{ drifter_data_folder }}/dirfl_15001_sep16.dat"
-#  register: p
-#  get_url:
-#    url: "{{ item.url }}/dirfl_15001_sep16.dat"
-#    dest: "{{ drifter_data_folder }}/dirfl_15001_sep16.dat"
-#    force: no
-#    timeout: 100
-#  when: not p.stat.isreg
-#  ignore_errors: no
-#
-#- name: Globcurrent | Download drifter data
-#  stat:
-#    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat"
-#  register: p
-#  stat:
-#    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
-#  register: q
-#  get_url:
-#    url: "{{ item.url }}/buoydata_15001_sep16.dat.gz"
-#    dest: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
-#    force: no
-#    timeout: 100
-#  when: not p.stat.isreg and not q.stat.isreg
-#  ignore_errors: no
-#
-#- name: Globcurrent | Unarchive gzip files
-#  stat:
-#    path: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat"
-#  register: p
-#  unarchive:
-#    src: "{{ drifter_data_folder }}/buoydata_15001_sep16.dat.gz"
-#    dest: "{{ drifter_data_folder }}"
-#    remote_src: yes
-#  when: not p.stat.isreg
+- name: Globcurrent | GUNzip drifter datasets
+  shell: "yes n | gunzip --keep *.gz"
+  args:
+    chdir: "{{ drifter_data_folder }}"
+  ignore_errors: yes

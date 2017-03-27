@@ -5,7 +5,7 @@ gc_sample_files:
   - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2010/074/20100315000000-GLOBCURRENT-L4-CURgeo_0m-ALT_OI-v02.0-fv01.0.nc
 
 gc_sample_uris:
-  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2014/001/
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2014/001/contents.html
 
 drifter_data_folder: "{{ sample_data_dir }}/drifters"
 aoml_url: ftp://ftp.aoml.noaa.gov/pub/phod/buoydata
