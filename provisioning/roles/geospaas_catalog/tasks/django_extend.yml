@@ -6,6 +6,7 @@
        update=yes
        force="{{ git_force }}"
        key_file=/vagrant/id_rsa
+       accept_hostkey=true
   with_items:
     - "{{ core_repos_apps + xtra_repos_apps}}"
 
