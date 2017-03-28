@@ -1,15 +1,28 @@
 ---
+# setup_python
+conda_core_pkgs:
+  - django=1.9
+  - coverage
+  - psycopg2
+conda_xtra_pkgs: []
 use_local_database: yes
-make_migrations: yes
-run_migrate: yes
-git_force_geospaas: no
-add_sample_data: yes
-private_sample_files: []
 
-# django_deploy: 
+# django_deploy
+django_app_user: 'vagrant'
+django_deploy_root_path: '{{ dev_sources_dir }}'
+django_application_name: 'geospaas_project'
+django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
 
-geospaas_repo: django-geo-spaas
-geospaas_app: geospaas
+geospaas_static_root: "{{ dev_sources_dir }}/site_media/static"
+geospaas_media_root: "{{ dev_sources_dir }}/site_media/media/"
+geospaas_download_root: "{{ dev_sources_dir }}/site_media/download"
+geospaas_products_root: "{{ dev_sources_dir }}/site_media/products"
+
+# django_extend
+git_force: no
+
+core_repos_apps:
+  - {url: "https://github.com/nansencenter", repo: django-geo-spaas, app: geospaas, version: master}
 
 geospaas_core_apps:
   - geospaas.vocabularies
@@ -23,17 +36,14 @@ geospaas_core_urls:
   - "    url(r'^', include('geospaas.urls')),"
   - "    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[0],"
 
+xtra_repos_apps: []
 geospaas_xtra_apps: []
-
 geospaas_xtra_urls: []
 
-django_app_user: 'vagrant'
+# setup_db
+make_migrations: yes
+run_migrate: yes
 
-django_deploy_root_path: '{{ dev_sources_dir }}/{{ geospaas_repo }}'
-django_application_name: 'project'
-django_project_path: '{{ django_deploy_root_path }}/{{ django_application_name }}'
-
-geospaas_static_root: "{{ dev_sources_dir }}/site_media/static"
-geospaas_media_root: "{{ dev_sources_dir }}/site_media/media/"
-geospaas_download_root: "{{ dev_sources_dir }}/site_media/download"
-geospaas_products_root: "{{ dev_sources_dir }}/site_media/products"
+# sample_data2db
+add_sample_data: yes
+private_sample_files: []

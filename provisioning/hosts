@@ -13,5 +13,8 @@
 [globcurrent]
 192.168.33.15 ansible_connection=local
 
+[icedrifters]
+192.168.33.16 ansible_connection=local
+
 [travis]
 localhost

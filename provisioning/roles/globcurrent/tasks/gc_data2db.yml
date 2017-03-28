@@ -18,7 +18,7 @@
 
 - name: Globcurrent | Add drifter datasets to db
   django_manage: >
-    command='ingest_svp_drifters {{ drifter_data_folder }}/dirfl_15001_sep16.dat {{ drifter_data_folder }}/buoydata_15001_sep16.dat 2014-01-01 2014-12-31'
+    command='ingest_svp_drifters {{ drifter_data_folder }}/dirfl_15001_sep16.dat {{ drifter_data_folder }}/buoydata_15001_sep16.dat --start 2014-01-01 --stop 2014-01-10 --minlon 10 --maxlon 60 --minlat -50 --maxlat -20'
     app_path='{{ django_project_path }}'
   when: ingest_drifters is defined and ingest_drifters
   ignore_errors: yes

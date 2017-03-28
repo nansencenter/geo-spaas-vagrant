@@ -1,12 +1,15 @@
 ---
 dev_sources_dir: "{{ shared_dir }}/src"
 
-svp_drifters_repo: django-geo-spaas-svp-drifters
-svp_drifters_version: master
-svp_drifters_app: svp_drifters
-ingest_drifters: no
+ingest_drifters: yes
 ingest_hyrax: yes
+
+conda_xtra_pkgs:
+  - pandas
 
 geospaas_xtra_apps:
   - svp_drifters
-#geospaas_xtra_urls: []
+
+xtra_repos_apps:
+  - {url: "https://github.com/nansencenter", repo: django-geo-spaas-svp-drifters, app: svp_drifters, version: master}
+  

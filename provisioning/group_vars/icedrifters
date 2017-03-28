@@ -1,0 +1,19 @@
+---
+dev_sources_dir: "{{ shared_dir }}/icedrifters_vm"
+
+nansat_version: develop
+mount_network_folders: yes
+
+conda_xtra_pkgs:
+  - scikit-learn
+  - opencv
+
+xtra_repos_apps:
+  - {url: "git@github.com:nansencenter", repo: django-sea-ice-drifters.git, app: django_sea_ice_drifters, version: master}
+  - {url: "git@github.com:nansencenter", repo: sea_ice_drift.git, app: sea_ice_drift, version: add_mcc_functions}
+  
+geospaas_xtra_apps:
+  - geospaas.processing_sar_nrcs
+  - django_sea_ice_drifters
+geospaas_xtra_urls: ["    url(r'^icedrift/', include('django_sea_ice_drifters.urls')),"]
+

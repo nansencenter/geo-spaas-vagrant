@@ -6,21 +6,17 @@
 - name: Setup Python | Fix certifi breaking things
   lineinfile: "dest={{ home_dir }}/.condarc line='ssl_verify: false'"
 
-- name: Setup Python | Install Nansencloud requirements
+- name: Setup Python | Install django-geo-spaas requirements (conda)
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
-    django=1.9
-    scikit-learn
-    coverage
-    psycopg2
+    - "{{ conda_core_pkgs + conda_xtra_pkgs}}"
 
-- name: Setup Python | Install django-geo-spaas requirements
+- name: Setup Python | Install django-geo-spaas requirements (PIP)
   pip: name={{ item }}
   with_items:
     - django-forms-bootstrap
     - django-leaflet
     - ipdb
-    - pandas
 
 - name: Setup Python | Clone pysqlite
   git: repo=https://github.com/ghaering/pysqlite
@@ -35,24 +31,3 @@
   args:
     chdir: "{{ ansible_env.HOME }}/pysqlite/"
   when: git_pysqlite.changed and use_local_database is defined and use_local_database
-
-- name: Setup Python | Update/checkout Geo-SPaaS Django
-  git: repo="https://github.com/nansencenter/{{ geospaas_repo }}"
-       dest="{{ dev_sources_dir }}/{{ geospaas_repo }}"
-       version="{{ geospaas_version }}"
-       update=yes
-       force="{{ git_force_geospaas }}"
-  tags:
-    - update-geospaas-catalog
-
-- name: Setup Python | Create link from Python dist-packages to geo-spaas-catalog
-  file: path='{{ python_dist_packages }}/{{ geospaas_app }}'
-        src='{{ dev_sources_dir }}/{{ geospaas_repo }}/{{ geospaas_app }}'
-        state=link
-        force=yes
-
-- name: Setup Python | Create link from home directory to django-geo-spaas
-  file: path="{{ home_dir }}/{{ geospaas_repo }}"
-        src="{{ dev_sources_dir }}/{{ geospaas_repo }}"
-        state=link
-        force=yes
