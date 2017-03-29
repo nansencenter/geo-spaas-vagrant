@@ -6,6 +6,7 @@ gc_sample_files:
 
 gc_sample_uris:
   - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2014/001/contents.html
+  - http://www.ifremer.fr/opendap/cerdap1/globcurrent/v2.0/global_012_deg/geostrophic/2014/002/contents.html
 
 drifter_data_folder: "{{ sample_data_dir }}/drifters"
 aoml_url: ftp://ftp.aoml.noaa.gov/pub/phod/buoydata
