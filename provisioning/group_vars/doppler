@@ -1,9 +1,32 @@
 ---
-dev_sources_dir: "{{ shared_dir }}/doppler_vm"
+dev_sources_dir: "{{ shared_dir }}/src"
 
 pythesint_version: master
 nansat_version: develop
 openwind_version: develop
-nansencloud_version: not_project_app
+geospaas_version: master
+
 add_sample_data: yes
 mount_network_folders: yes
+test_nansat: no
+
+ftp_dopple: ftp://ftp.nersc.no/pub/openwind
+sample_data_url: "ftp://ftp.nersc.no/pub/nansat/test_data"
+
+sample_files:
+  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar, mapper: gsar_ws}
+  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.xml, mapper: gsar_ws}
+  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.json, mapper: gsar_ws}
+
+ingest_drifters: no
+ingest_hyrax: no
+
+conda_xtra_pkgs:
+  - pandas
+
+geospaas_xtra_apps:
+  - svp_drifters
+
+xtra_repos_apps:
+  - {url: "https://github.com/nansencenter", repo: django-geo-spaas-svp-drifters, app: svp_drifters, version: master}
+  
