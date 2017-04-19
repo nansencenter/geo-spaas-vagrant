@@ -28,3 +28,24 @@ Shared directories
  * /vagrant/shared/course_vm -> geo-spaas-vagrant/shared/course_vm
   * this directory is specific for a virtual machine
   
+Mounting network folders
+========================
+To mount network folders, you'll need to create a file ```main.yml``` in
+```provisioning/roles/localvm/defaults/```. This file should contain a username
+and password to access the network folders, so make sure to keep it out of
+version control ++...
+
+Here is an example setup:
+
+```
+---
+mount_folders:
+  - {mount_name: /mnt/<ip-like>, mount_src: //<ip-like> folder: <some-folder>}
+  - {mount_name: /mnt/<ip-like>, mount_src: //<ip-like> folder: <some-other-folder>}
+
+uid: <uid>
+gid: <gid>
+username: <username>
+password: <passwd>
+domain: <domain>
+```

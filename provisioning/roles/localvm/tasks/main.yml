@@ -2,12 +2,13 @@
 - name: Local VM | Mount network folders
   become: yes
   mount:
-    name: "{{ mount_name }}/{{ item }}"
-    src: "{{ mount_src }}/{{ item }}"
+    name: "{{ item.mount_name }}/{{ item.folder }}"
+    src: "{{ item.mount_src }}/{{ item.folder }}"
     fstype: cifs
     opts: "uid={{ uid }},gid={{ gid }},username={{ username }},password={{ password }},domain={{ domain }}"
     state: mounted
-  with_items: "{{ mounted_dirs }}"
+  with_items:
+    - "{{ mount_folders }}"
   when: mount_network_folders
   ignore_errors: yes
 
