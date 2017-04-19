@@ -49,3 +49,5 @@ username: <username>
 password: <passwd>
 domain: <domain>
 ```
+
+The items in ```mount_folders``` will then be mounted in the localvm tasks.
