@@ -21,7 +21,7 @@
   with_items:
     - "{{ geospaas_static_root }}"
     - "{{ geospaas_media_root }}"
-    - "{{ geospaas_download_root }}"
+    - "{{ geospaas_downloads_root }}"
     - "{{ geospaas_products_root }}"
     - "{{ django_project_path }}/static"
 
@@ -33,7 +33,7 @@
         MEDIA_URL = '/site_media/media/'
         STATIC_ROOT = "{{ geospaas_static_root }}"
         MEDIA_ROOT =  "{{ geospaas_media_root }}"
-        DOWNLOAD_ROOT = "{{ geospaas_download_root }}"
+        DOWNLOADS_ROOT = "{{ geospaas_downloads_root }}"
         PRODUCTS_ROOT = "{{ geospaas_products_root }}"
         STATICFILES_DIRS = [
         "{{ django_project_path }}/static",
