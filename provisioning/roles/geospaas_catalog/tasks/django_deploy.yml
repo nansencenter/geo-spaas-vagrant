@@ -2,13 +2,13 @@
 #geo-spaas-vagrant\tasks\django_deploy.yml
 - name: Django deploy | create new django project
   become_user: '{{ django_app_user }}'
-  shell: 'django-admin.py startproject {{ django_application_name }}'
+  shell: 'django-admin.py startproject {{ django_project_name }}'
   args:
     chdir: '{{ django_deploy_root_path }}'
     creates: '{{ django_project_path }}'
 
 - name: Setup Python | Create link to Django project
-  file: path='{{ home_dir }}/{{ django_application_name }}'
+  file: path='{{ home_dir }}/{{ django_project_name }}'
         src='{{ django_project_path }}'
         state=link
         force=yes
@@ -27,7 +27,7 @@
 
 - name: Django deploy | add variables to settings.py
   blockinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
     insertafter: EOF
     block: |
         MEDIA_URL = '/site_media/media/'
@@ -43,19 +43,19 @@
 
 - name: Django deploy | replace DB backend
   replace:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
     regexp: 'django.db.backends.sqlite3'
     replace: 'django.contrib.gis.db.backends.spatialite'
 
 - name: Django deploy | replace DB filename
   replace:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
     regexp: 'db.sqlite3'
     replace: 'geodjango.db'
 
 - name: Django deploy | Add include in urls.py
   lineinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/urls.py'
     insertafter: BOF
     line: "{{ item }}"
   with_items:

@@ -10,19 +10,21 @@ add_sample_data: yes
 mount_network_folders: yes
 test_nansat: no
 
-ftp_dopple: ftp://ftp.nersc.no/pub/openwind
-sample_data_url: "ftp://ftp.nersc.no/pub/nansat/test_data"
-
-sample_files:
-  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar, mapper: gsar_ws}
-  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.xml, mapper: gsar_ws}
-  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.json, mapper: gsar_ws}
+#ftp_dopple: ftp://ftp.nersc.no/pub/openwind
+#sample_data_url: "ftp://ftp.nersc.no/pub/nansat/test_data"
+#
+#sample_files:
+#  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar, mapper: gsar_ws}
+#  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.xml, mapper: gsar_ws}
+#  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.json, mapper: gsar_ws}
 
 ingest_drifters: no
 ingest_hyrax: no
 
 conda_xtra_pkgs:
   - pandas
+
+django_project_name: 'geospaas_doppler'
 
 geospaas_xtra_apps:
   - svp_drifters
