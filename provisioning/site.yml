@@ -29,9 +29,9 @@
     - localvm
     - conda
     - nansat
+    - openwind
     - sample_datasets
     - geospaas_catalog
-    - openwind
     - doppler
     #- liclipse
   environment:
@@ -45,8 +45,8 @@
     - conda
     - sample_datasets
     - nansat
-    - geospaas_catalog
     - openwind
+    - geospaas_catalog
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
