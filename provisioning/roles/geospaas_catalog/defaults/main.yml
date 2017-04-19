@@ -25,6 +25,7 @@ core_repos_apps:
   - {url: "https://github.com/nansencenter", repo: django-geo-spaas, app: geospaas, version: master}
 
 geospaas_core_apps:
+  - geospaas
   - geospaas.vocabularies
   - geospaas.catalog
   - geospaas.nansat_ingestor
