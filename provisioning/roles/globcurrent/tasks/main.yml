@@ -1,4 +1,2 @@
 ---
-- include: download.yml
-
 - include: gc_data2db.yml

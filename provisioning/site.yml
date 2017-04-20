@@ -32,6 +32,7 @@
     - openwind
     - sample_datasets
     - geospaas_catalog
+    - svp_drifters
     - doppler
     #- liclipse
   environment:
@@ -60,6 +61,7 @@
     - course
     - sample_datasets
     - geospaas_catalog
+    - svp_drifters
     - globcurrent
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"

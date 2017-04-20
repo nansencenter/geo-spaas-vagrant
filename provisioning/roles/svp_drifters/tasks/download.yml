@@ -1,8 +1,8 @@
 ---
-- name: Globcurrent | Create drifter data folder
+- name: SVP drifters | Create drifter data folder
   file: path="{{ drifter_data_folder }}" state=directory
 
-- name: Globcurrent | Download drifter datasets
+- name: SVP drifters | Download drifter datasets
   get_url:
     url: "{{ item.url }}/{{ item.file }}"
     dest: "{{ drifter_data_folder }}/{{ item.file }}"
@@ -12,7 +12,7 @@
     - "{{ drifters }}"
   ignore_errors: yes
 
-- name: Globcurrent | GUNzip drifter datasets
+- name: SVP drifters | GUNzip drifter datasets
   shell: "yes n | gunzip --keep *.gz"
   args:
     chdir: "{{ drifter_data_folder }}"

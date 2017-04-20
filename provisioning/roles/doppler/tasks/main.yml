@@ -2,7 +2,7 @@
 - name: Doppler | Add GTOPO30 vrt to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line='export GTOPO30={{ gtopo30_path }}'
   when: mount_network_folders is defined and mount_network_folders
-  ignore_errors: yes
+  ignore_errors: no
 
 # THIS DOESN'T WORK..:
 #- name: Add the github SSH public key to the vm authorized_keys
