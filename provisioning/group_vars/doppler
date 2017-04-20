@@ -18,8 +18,7 @@ test_nansat: no
 #  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.xml, mapper: gsar_ws}
 #  - {name: ASA_WS__0PNPDE20100110_203913_000001992085_00486_41121_6921.rvl.gsar.json, mapper: gsar_ws}
 
-ingest_drifters: no
-ingest_hyrax: no
+ingest_drifters: yes
 
 conda_xtra_pkgs:
   - pandas
