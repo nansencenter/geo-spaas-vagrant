@@ -40,6 +40,21 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
+- hosts: doppler_prod
+  roles:
+    - localvm
+    - conda
+    - nansat
+    - openwind
+    - sample_datasets
+    - geospaas_catalog
+    - svp_drifters
+    - doppler
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+
 - hosts: metsarvind
   roles:
     - localvm

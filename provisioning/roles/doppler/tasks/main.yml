@@ -48,14 +48,15 @@
 #        state=link
 #        force=yes
 
-#- name: Add doppler files to db
-#  django_manage: >
-#      command='ingest {{ mount_name }}/{{ item.name }}'
-#      app_path='{{ dev_sources_dir }}/nansen-cloud/project'
-#  with_items:
-#    - '{{ doppler_files }}'
-#  when: mount_network_folders is defined and mount_network_folders 
-#
+- name: Doppler | Add gsar doppler products to db
+  django_manage: >
+      command='ingest_sar_doppler /mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/{{ item }}/VV/gsar_rvl/*.gsar'
+      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
+  with_items:
+    - ascending
+    - descending
+  when: mount_network_folders is defined and mount_network_folders 
+
 #- name: Add netcdf doppler files to db
 #  django_manage: >
 #      command='add_images {{ sample_data_dir }}/asar_netcdf_old_doppler/ASA*.nc'

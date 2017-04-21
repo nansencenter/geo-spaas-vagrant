@@ -1,0 +1,30 @@
+---
+dev_sources_dir: "{{ shared_dir }}/src"
+
+pythesint_version: master
+nansat_version: dev_doppler_vm
+openwind_version: dev_doppler_vm
+geospaas_version: dev_doppler_vm
+
+add_sample_data: no
+ingest_drifters: no
+
+mount_network_folders: yes
+test_nansat: no
+
+conda_xtra_pkgs:
+  - pandas
+
+django_project_name: 'geospaas_doppler_prod'
+
+geospaas_xtra_apps:
+  - svp_drifters
+  - geospaas.processing_sar_nrcs
+  - geospaas.processing_sar_doppler
+  - geospaas.processing_old_doppler
+  - geospaas.noaa_ndbc
+
+xtra_repos_apps:
+  - {url: "https://github.com/nansencenter", repo: django-geo-spaas-svp-drifters, app: svp_drifters, version: master}
+  
+
