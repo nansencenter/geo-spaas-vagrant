@@ -48,14 +48,24 @@
 #        state=link
 #        force=yes
 
-- name: Doppler | Add gsar doppler products to db
-  django_manage: >
-      command='ingest_sar_doppler /mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/{{ item }}/VV/gsar_rvl/*.gsar'
-      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
-  with_items:
-    - ascending
-    - descending
-  when: mount_network_folders is defined and mount_network_folders 
+# DOESN'T WORK:
+#- name: Doppler | Ingest ncep wind in January 2010
+#  django_manage: >
+#      command='ingest {{ item }}'
+#      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
+#  with_fileglob:
+#    - '/mnt/10.11.12.231/sat_auxdata/model/ncep/gfs/gfs201001*/*'
+#  when: mount_network_folders is defined and mount_network_folders 
+#
+#- name: Doppler | Add gsar doppler products to db
+#  django_manage: >
+#      command='ingest_sar_doppler {{ item }}'
+#      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
+#  with_fileglob:
+#    - '/mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/ascending/VV/gsar_rvl/*.gsar'
+#    - '/mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/descending/VV/gsar_rvl/*.gsar'
+#  when: mount_network_folders is defined and mount_network_folders 
+#  ignore_errors: no
 
 #- name: Add netcdf doppler files to db
 #  django_manage: >
