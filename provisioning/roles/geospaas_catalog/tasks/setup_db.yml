@@ -3,7 +3,7 @@
   django_manage: >
       command=makemigrations
       app_path='{{ django_project_path }}'
-      settings='{{ django_application_name }}.settings'
+      settings='{{ django_project_name }}.settings'
       pythonpath='{{ django_project_path }}'
   when: make_migrations is defined and make_migrations
 
@@ -11,7 +11,7 @@
   django_manage: >
       command=migrate
       app_path='{{ django_project_path }}'
-      settings='{{ django_application_name }}.settings'
+      settings='{{ django_project_name }}.settings'
       pythonpath='{{ django_project_path }}'
   when: run_migrate is defined and run_migrate
 
@@ -20,3 +20,4 @@
       command='update_vocabularies'
       app_path='{{ django_project_path }}'
   when: run_migrate is defined and run_migrate
+  ignore_errors: no

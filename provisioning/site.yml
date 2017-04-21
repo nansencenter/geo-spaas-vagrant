@@ -29,11 +29,27 @@
     - localvm
     - conda
     - nansat
+    - openwind
     - sample_datasets
     - geospaas_catalog
-    - openwind
+    - svp_drifters
     - doppler
-    - liclipse
+    #- liclipse
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+
+- hosts: doppler_prod
+  roles:
+    - localvm
+    - conda
+    - nansat
+    - openwind
+    - sample_datasets
+    - geospaas_catalog
+    - svp_drifters
+    - doppler
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
@@ -45,8 +61,8 @@
     - conda
     - sample_datasets
     - nansat
-    - geospaas_catalog
     - openwind
+    - geospaas_catalog
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
@@ -60,6 +76,7 @@
     - course
     - sample_datasets
     - geospaas_catalog
+    - svp_drifters
     - globcurrent
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"

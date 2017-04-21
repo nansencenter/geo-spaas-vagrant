@@ -2,7 +2,7 @@
 - name: Openwind | Update/checkout OpenWind
   git: repo=https://github.com/nansencenter/openwind
        dest="{{ dev_sources_dir }}/openwind"
-       version=develop
+       version="{{ openwind_version }}"
        update=yes
 
 - name: Openwind | Create link from Python dist-packages to openwind

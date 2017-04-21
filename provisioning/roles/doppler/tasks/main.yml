@@ -2,6 +2,18 @@
 - name: Doppler | Add GTOPO30 vrt to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line='export GTOPO30={{ gtopo30_path }}'
   when: mount_network_folders is defined and mount_network_folders
+  ignore_errors: no
+
+- name: Doppler | Add drifter datasets in January 2010 to db
+  django_manage: >
+    command='ingest_svp_drifters {{ drifter_data_folder }}/{{ item.meta }} {{ drifter_data_folder }}/{{ item.data }} --start 2010-01-01 --stop 2010-01-31'
+    app_path='{{ django_project_path }}'
+  with_items:
+    - {meta: dirfl_1_5000.dat, data: buoydata_1_5000.dat}
+    - {meta: dirfl_5001_10000.dat, data: buoydata_5001_10000.dat}
+    - {meta: dirfl_10001_15000.dat, data: buoydata_10001_15000.dat}
+    - {meta: dirfl_15001_sep16.dat, data: buoydata_15001_sep16.dat}
+  when: ingest_drifters is defined and ingest_drifters
   ignore_errors: yes
 
 # THIS DOESN'T WORK..:
@@ -36,14 +48,25 @@
 #        state=link
 #        force=yes
 
-#- name: Add doppler files to db
+# DOESN'T WORK:
+#- name: Doppler | Ingest ncep wind in January 2010
 #  django_manage: >
-#      command='ingest {{ mount_name }}/{{ item.name }}'
-#      app_path='{{ dev_sources_dir }}/nansen-cloud/project'
-#  with_items:
-#    - '{{ doppler_files }}'
+#      command='ingest {{ item }}'
+#      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
+#  with_fileglob:
+#    - '/mnt/10.11.12.231/sat_auxdata/model/ncep/gfs/gfs201001*/*'
 #  when: mount_network_folders is defined and mount_network_folders 
 #
+#- name: Doppler | Add gsar doppler products to db
+#  django_manage: >
+#      command='ingest_sar_doppler {{ item }}'
+#      app_path='{{ dev_sources_dir }}/{{ django_project_name }}'
+#  with_fileglob:
+#    - '/mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/ascending/VV/gsar_rvl/*.gsar'
+#    - '/mnt/10.11.12.232/sat_downloads_asar/level-0/2010-01/descending/VV/gsar_rvl/*.gsar'
+#  when: mount_network_folders is defined and mount_network_folders 
+#  ignore_errors: no
+
 #- name: Add netcdf doppler files to db
 #  django_manage: >
 #      command='add_images {{ sample_data_dir }}/asar_netcdf_old_doppler/ASA*.nc'

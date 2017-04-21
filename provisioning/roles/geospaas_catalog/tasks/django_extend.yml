@@ -20,7 +20,7 @@
 
 - name: Django extend | add apps to settings.py
   blockinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/settings.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
     insertafter: "INSTALLED_APPS"
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item }}"
     block: |
@@ -30,7 +30,7 @@
 
 - name: Django extend | add urlpatterns to urls.py
   lineinfile:
-    dest: '{{ django_project_path }}/{{ django_application_name }}/urls.py'
+    dest: '{{ django_project_path }}/{{ django_project_name }}/urls.py'
     insertafter: urlpatterns
     line: "{{ item }}"
   with_items:

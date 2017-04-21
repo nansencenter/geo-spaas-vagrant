@@ -1,0 +1,14 @@
+---
+drifter_data_folder: "{{ sample_data_dir }}/drifters"
+aoml_url: ftp://ftp.aoml.noaa.gov/pub/phod/buoydata
+
+drifters:
+  - {url: "{{ aoml_url }}", file: buoydata_1_5000.dat.gz}
+  - {url: "{{ aoml_url }}", file: dirfl_1_5000.dat}
+  - {url: "{{ aoml_url }}", file: buoydata_5001_10000.dat.gz}
+  - {url: "{{ aoml_url }}", file: dirfl_5001_10000.dat}
+  - {url: "{{ aoml_url }}", file: buoydata_10001_15000.dat.gz}
+  - {url: "{{ aoml_url }}", file: dirfl_10001_15000.dat}
+  - {url: "{{ aoml_url }}", file: buoydata_15001_sep16.dat.gz}
+  - {url: "{{ aoml_url }}", file: dirfl_15001_sep16.dat}
+
