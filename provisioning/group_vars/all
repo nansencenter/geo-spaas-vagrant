@@ -23,3 +23,4 @@ sample_files:
   - {name: A2015122122000.L2_LAC.NorthNorwegianSeas.hdf, mapper: obpg_l2}
   - {name: S1A_EW_GRDM_1SDH_20150702T172954_20150702T173054_006635_008DA5_55D1.zip, mapper: sentinel1_l1}
 
+django_project_name: 'geospaas_project'
