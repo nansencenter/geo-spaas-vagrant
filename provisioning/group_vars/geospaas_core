@@ -1,3 +1,2 @@
 ---
 dev_sources_dir: "{{ shared_dir }}/geospaas_core_vm"
-django_project_name: "geospaas_project"
