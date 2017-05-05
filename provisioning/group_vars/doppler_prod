@@ -7,7 +7,7 @@ openwind_version: dev_doppler_vm
 geospaas_version: dev_doppler_vm
 
 add_sample_data: no
-ingest_drifters: no
+ingest_drifters: yes
 
 mount_network_folders: yes
 test_nansat: no
