@@ -1,0 +1,13 @@
+---
+dev_sources_dir: "{{ shared_dir }}/src"
+
+motu_download_url: https://github.com/clstoulouse/motu-client-python/releases/download/motu-client-python-1.4.00/
+motu_src: motu-client-python-1.4.00-20170410143941999-src.tar.gz
+motu_dir: "{{ home_dir }}/motu-client"
+motu_init_file: "{{ motu_dir }}/motu-client-python.ini"
+
+cmems_data_dir: cmems
+
+django_project_name: geospaas_cmems
+
+# Add path to CMEMS data store

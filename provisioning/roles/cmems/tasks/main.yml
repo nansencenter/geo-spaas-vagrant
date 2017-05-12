@@ -1,0 +1,48 @@
+---
+- name: CMEMS | Download Motu client
+  get_url:
+    url: '{{ motu_download_url }}/{{ motu_src }}'
+    dest: "{{ dev_sources_dir }}"
+
+- name: CMEMS | Unpack Motu source code
+  shell: "yes n | tar zxfk {{ motu_src }}"
+  args:
+    chdir: "{{ dev_sources_dir }}"
+  ignore_errors: yes
+
+- name: CMEMS | Make motu-client.py executable
+  file:
+    path: "{{ dev_sources_dir }}/motu-client-python-1.4.00-20170410143941999/src/python/motu-client.py"
+    mode: "u=rx"
+
+- name: CMEMS | Create Motu folder for configuration file
+  file:
+    path: '{{ motu_dir }}'
+    state: directory
+
+- name: CMEMS | Create Motu configuration file
+  file:
+    path: "{{ motu_init_file }}"
+    state: touch
+    mode: "u=rw,g=r,o=r"
+
+- name: CMEMS | Add content to Motu configuration file
+  blockinfile:
+    dest: "{{ motu_init_file }}"
+    insertafter: EOF
+    block: |
+        [Main]
+        user={{ username }}
+        pwd={{ password }}
+        log_level=10
+        out_dir={{ sample_data_dir }}/{{ cmems_data_dir }}
+
+- name: CMEMS | Create sample data folder
+  file:
+    path: "{{ sample_data_dir }}/cmems"
+
+# The following works with motu but we could perhaps be able to populate the dn
+# without downloading data...
+#- name: CMEMS | Download sample datasets
+#
+#- name: CMEMS | Ingest CMEMS sample datasets

@@ -84,6 +84,19 @@
     LC_ALL: "en_US.UTF-8"
     CPL_ZIP_ENCODING: "UTF-8"
 
+- hosts: cmems
+  roles:
+    - localvm
+    - conda
+    - nansat
+    - geospaas_catalog
+    - cmems
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+    CPL_ZIP_ENCODING: "UTF-8"
+
 - hosts: icedrifters
   roles:
     - localvm

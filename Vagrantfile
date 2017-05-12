@@ -42,6 +42,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     doppler_prod.vm.network :private_network, ip: "192.168.33.17"
   end
 
+  config.vm.define "cmems", autostart: false do |cmems|
+    cmems.vm.network :private_network, ip: "192.168.33.18"
+  end
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 4000
     v.cpus = 2
