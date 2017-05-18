@@ -89,6 +89,7 @@
     - localvm
     - conda
     - nansat
+    - course
     - geospaas_catalog
     - cmems
   environment:

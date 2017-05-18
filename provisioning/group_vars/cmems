@@ -10,4 +10,8 @@ cmems_data_dir: cmems
 
 django_project_name: geospaas_cmems
 
-# Add path to CMEMS data store
+subsetter_commands:
+  - {cmd: 'python motu-client.py -m http://nrtcmems.mercator-ocean.fr/mis-gateway-servlet/Motu -s GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS -d global-analysis-forecast-phy-001-024 -x -10 -X 30 -y 55 -Y 73 -t "2017-05-18 12:00:00" -T "2017-05-27 12:00:00" -z 0.494 -Z 0.4942 -v mlotst -v thetao -v uo -v vo -o {{ sample_data_dir }}/cmems -f ', 
+     fn: 'GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS-x10-X30-y55-Y73-201705181200-201705271200.nc'}
+  - {cmd: 'python motu-client.py -m http://cmems.met.no/miscas/cgi-bin/fiMisSubsetter -s ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS -d dataset-topaz4-arc-myoceanv2-be -x -10 -X 30 -y 55 -Y 73 -t "2017-05-18" -T "2017-05-26" -z 5 -Z 5.0001 -v time -v x -v y -v u -v latitude -v temperature -v longitude -v v -v depth -v mlp -o {{ sample_data_dir }}/cmems -f ', 
+     fn: 'ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS-x10-X30-y55-Y73-20170518-20170526.nc'}

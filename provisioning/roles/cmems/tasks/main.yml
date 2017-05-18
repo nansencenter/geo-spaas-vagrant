@@ -41,8 +41,14 @@
   file:
     path: "{{ sample_data_dir }}/cmems"
 
-# The following works with motu but we could perhaps be able to populate the dn
+# The following works with motu but we could perhaps be able to populate the db
 # without downloading data...
-#- name: CMEMS | Download sample datasets
-#
+- name: CMEMS | Download sample datasets
+  shell: "{{ item.cmd }} {{ item.fn }}"
+  args:
+    chdir: "{{ dev_sources_dir }}/motu-client-python-1.4.00-20170410143941999/src/python/"
+    creates: "{{ item.fn }}"
+  with_items:
+    - "{{ subsetter_commands }}"
+
 #- name: CMEMS | Ingest CMEMS sample datasets

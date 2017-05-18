@@ -1,5 +1,5 @@
 ---
-dev_sources_dir: "{{ shared_dir }}/src"
+dev_sources_dir: "{{ shared_dir }}/gc_src"
 
 ingest_drifters: yes
 ingest_hyrax: yes
