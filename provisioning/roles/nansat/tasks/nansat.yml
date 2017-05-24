@@ -8,6 +8,7 @@
   register: git_nansat
   tags:
     - update-nansat
+  ignore_errors: yes
 
 - name: nansat | Clean Nansat (always run to keep the pixel functions updated)
   shell: 'python setup.py clean --all'
@@ -34,6 +35,11 @@
         src='{{ dev_sources_dir }}/nansat/nansat_integration_tests'
         state=link
         force=yes
+
+- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR
+  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ nansat_test_data_dir }}'
+  when: mount_network_folders is defined and mount_network_folders
+  ignore_errors: no
 
 - name: nansat | Nosetests
   shell: "nosetests nansat"

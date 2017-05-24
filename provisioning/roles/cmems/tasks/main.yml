@@ -47,8 +47,9 @@
   shell: "{{ item.cmd }} {{ item.fn }}"
   args:
     chdir: "{{ dev_sources_dir }}/motu-client-python-1.4.00-20170410143941999/src/python/"
-    creates: "{{ item.fn }}"
+    creates: "{{ sample_data_dir }}/{{ item.fn }}"
   with_items:
     - "{{ subsetter_commands }}"
+
 
 #- name: CMEMS | Ingest CMEMS sample datasets
