@@ -36,9 +36,14 @@
         state=link
         force=yes
 
-- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR
+- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to network folder
   lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ nansat_test_data_dir }}'
-  when: mount_network_folders is defined and mount_network_folders
+  when: mount_network_folders is defined and mount_network_folders and nansat_test_data_dir is defined
+  ignore_errors: no
+
+- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to local folder
+  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ sample_data_dir }}'
+  when: mount_network_folders is undefined and nansat_test_data_dir is undefined
   ignore_errors: no
 
 - name: nansat | Nosetests
