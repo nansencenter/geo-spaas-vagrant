@@ -16,3 +16,7 @@ subsetter_commands:
      fn: 'GLOBAL_ANALYSIS_FORECAST_PHY_001_024-TDS-x10-X30-y55-Y73-201705181200-201705271200.nc'}
   - {cmd: 'python motu-client.py -m http://cmems.met.no/miscas/cgi-bin/fiMisSubsetter -s ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS -d dataset-topaz4-arc-myoceanv2-be -x -10 -X 30 -y 55 -Y 73 -t "2017-05-18" -T "2017-05-26" -z 5 -Z 5.0001 -v time -v x -v y -v u -v latitude -v temperature -v longitude -v v -v depth -v mlp -o {{ sample_data_dir }}/cmems -f ', 
      fn: 'ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS-x10-X30-y55-Y73-20170518-20170526.nc'}
+  - {cmd: 'python motu-client.py -m http://cmems.met.no/miscas/cgi-bin/fiMisSubsetter -s ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS -d dataset-topaz4-arc-myoceanv2-be -x 20 -X 80 -y 60 -Y 90 -t "2017-05-20" -T "2017-05-30" -v time -v x -v y -v latitude -v fice -v hice -v longitude -o /vagrant/shared/test_data/cmems -f ',
+     fn: 'ARC-METNO-ARC-TOPAZ4_2_PHYS-FOR-TDS-x20-X80-y60-Y90-20170520-20170530.nc'}
+  - {cmd: 'python motu-client.py -m http://cmems.met.no/miscas/cgi-bin/fiMisSubsetter -s SIW-DMI-ARC-SEAICE_TEMP-OBS-TDS -d ice_temp_arcticv5_aggregated -x 0 -X 100 -y 60 -Y 90 -t "2017-05-20" -T "2017-05-25" -v time -v lat -v lon -v sea_ice_fraction -o /vagrant/shared/test_data/cmems -f ',
+     fn: 'SIW-DMI-ARC-SEAICE_TEMP-OBS-TDS-x0-X100-y60-Y90-20170520-20170525.nc'}
