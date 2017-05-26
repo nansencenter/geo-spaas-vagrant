@@ -1,5 +1,6 @@
 ---
 dev_sources_dir: "{{ shared_dir }}/src"
+nansat_version: cmems_vm
 
 motu_download_url: https://github.com/clstoulouse/motu-client-python/releases/download/motu-client-python-1.4.00/
 motu_src: motu-client-python-1.4.00-20170410143941999-src.tar.gz
