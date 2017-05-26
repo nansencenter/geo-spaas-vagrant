@@ -32,14 +32,13 @@
     insertafter: EOF
     block: |
         [Main]
-        user={{ username }}
-        pwd={{ password }}
+        user={{ cmems_username }}
+        pwd={{ cmems_password }}
         log_level=10
         out_dir={{ sample_data_dir }}/{{ cmems_data_dir }}
 
 - name: CMEMS | Create sample data folder
-  file:
-    path: "{{ sample_data_dir }}/cmems"
+  file: path="{{ sample_data_dir }}/cmems" state=directory
 
 # The following works with motu but we could perhaps be able to populate the db
 # without downloading data...
