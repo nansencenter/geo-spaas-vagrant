@@ -6,7 +6,7 @@ mount_network_folders: yes
 
 conda_xtra_pkgs:
   - scikit-learn
-  - opencv
+  - opencv=3.1.0
 
 xtra_repos_apps:
   - {url: "git@github.com:nansencenter", repo: django-sea-ice-drifters.git, app: django_sea_ice_drifters, version: master}
