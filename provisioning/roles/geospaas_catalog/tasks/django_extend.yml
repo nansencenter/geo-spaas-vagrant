@@ -31,7 +31,7 @@
 - name: Django extend | add urlpatterns to urls.py
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_project_name }}/urls.py'
-    insertafter: urlpatterns
+    insertafter: '^urlpatterns*'
     line: "{{ item }}"
   with_items:
     - "{{ geospaas_core_urls + geospaas_xtra_urls}}"

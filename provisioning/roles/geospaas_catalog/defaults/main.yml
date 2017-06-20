@@ -34,7 +34,6 @@ geospaas_core_apps:
 
 geospaas_core_urls:
   - "    url(r'^', include('geospaas.urls')),"
-  - "    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)[0],"
 
 xtra_repos_apps: []
 geospaas_xtra_apps: []
