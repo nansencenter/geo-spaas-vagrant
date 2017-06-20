@@ -16,6 +16,7 @@
   with_items:
     - django-forms-bootstrap
     - django-leaflet
+    - thredds_crawler
     - ipdb
 
 - name: Setup Python | Clone pysqlite
