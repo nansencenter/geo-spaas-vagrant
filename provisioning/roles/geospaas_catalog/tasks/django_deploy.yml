@@ -41,6 +41,12 @@
         SERIALIZATION_MODULES = {"geojson": "django.contrib.gis.serializers.geojson",}
         ALLOWED_HOSTS = ['*']
 
+- name: Django deploy | update package name for SAR Doppler
+  replace:
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
+    regexp: 'geospaas.processing_sar_doppler'
+    replace: 'sar_doppler'
+
 - name: Django deploy | replace DB backend
   replace:
     dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
