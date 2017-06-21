@@ -12,19 +12,12 @@
 - name: Python | Install Nansat requirements
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
-    qt
-    numpy
-    scipy
-    matplotlib
-    nose
-    basemap
-    basemap-data-hires
-    netcdf4
-    ipython
-    jupyter
-    gdal
-    pillow
-    cmocean
+    - "{{ nansat_reqs }}"
+
+#- name: Python | Update all conda installed packages
+#  shell: 'conda update -q --yes -c conda-forge {{ item }}'
+#  with_items:
+#    - "{{ nansat_reqs }}"
 
 - name: Python | Copy downloaded packages to cached conda_pkgs
   shell: 'cp {{ conda_dir }}/pkgs/*.[bt][zx][2t] {{ cache_dir }}/conda_pkgs/'
