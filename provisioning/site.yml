@@ -59,9 +59,9 @@
   roles:
     - localvm
     - conda
-    - sample_datasets
     - nansat
     - openwind
+    - sample_datasets
     - geospaas_catalog
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"

@@ -58,3 +58,4 @@
 
 - name: Datasets | Add MAPPER_TEST_DATA_DIR to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line="export MAPPER_TEST_DATA_DIR={{ sample_data_dir }}"
+  when: nansat_test_data_dir is undefined
