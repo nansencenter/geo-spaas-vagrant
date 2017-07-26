@@ -3,7 +3,7 @@ dev_sources_dir: "{{ shared_dir }}/src"
 
 pythesint_version: master
 nansat_version: dev_doppler_vm
-openwind_version: dev_doppler_vm
+openwind_version: develop
 geospaas_version: dev_doppler_vm
 
 add_sample_data: no
