@@ -17,3 +17,5 @@ nansat_reqs:
     - gdal
     - pillow
     - cmocean
+    - cfunits
+    - mock

@@ -39,9 +39,3 @@
 - name: Python | Run ldconfig
   become: yes
   shell: '/sbin/ldconfig'
-
-- name: Python | Install nansat requirements with PIP
-  pip: name={{ item }} #extra_args='--no-cache-dir -I'
-  with_items:
-    - cfunits==1.3.3 # there is a bug in last version (1.5.1)
-    - mock
