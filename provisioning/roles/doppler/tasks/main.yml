@@ -4,6 +4,11 @@
   when: mount_network_folders is defined and mount_network_folders
   ignore_errors: no
 
+- name: Doppler | Add path to DORIS files to .bashrc
+  lineinfile: dest="{{ home_dir }}/.bashrc" line='export DORIS_PATH={{ doris_path }}'
+  when: mount_network_folders is defined and mount_network_folders
+  ignore_errors: no
+
 - name: Doppler | Add drifter datasets in January 2010 to db
   django_manage: >
     command='ingest_svp_drifters {{ drifter_data_folder }}/{{ item.meta }} {{ drifter_data_folder }}/{{ item.data }} --start 2010-01-01 --stop 2010-01-31'
