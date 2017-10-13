@@ -2,3 +2,6 @@
 dev_sources_dir: "{{ shared_dir }}/course_vm"
 setup_ubuntu: yes
 add_sample_data: yes
+
+conda_xtra_pkgs:
+  - pandas
