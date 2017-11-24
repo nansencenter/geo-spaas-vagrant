@@ -12,7 +12,7 @@ test_nansat: no
 #geospaas_xtra_apps: []
 #geospaas_xtra_urls: []
 
-ftp_openwind: ftp://ftp.nersc.no/pub/openwind
+ftp_openwind: ftp://ftp.nersc.no/openwind
 sample_data_url: "{{ ftp_openwind }}/test_data"
 
 sample_files:
