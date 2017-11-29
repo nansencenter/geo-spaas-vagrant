@@ -1,7 +1,7 @@
 ---
 # setup_python
 conda_core_pkgs:
-  - django=1.9
+  - django=1.11.7
   - coverage
   - psycopg2
 conda_xtra_pkgs: []

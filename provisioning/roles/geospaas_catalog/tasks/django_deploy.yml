@@ -2,7 +2,7 @@
 #geo-spaas-vagrant\tasks\django_deploy.yml
 - name: Django deploy | create new django project
   become_user: '{{ django_app_user }}'
-  shell: 'django-admin.py startproject {{ django_project_name }}'
+  shell: 'django-admin startproject {{ django_project_name }}'
   args:
     chdir: '{{ django_deploy_root_path }}'
     creates: '{{ django_project_path }}'

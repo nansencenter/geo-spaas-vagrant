@@ -1,3 +1,5 @@
+.DC_Store
+.idea/
 .vagrant/
 python/
 shared/
