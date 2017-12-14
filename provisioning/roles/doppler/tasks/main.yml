@@ -1,4 +1,9 @@
 ---
+- name: Doppler | Add GMTED30 vrt to .bashrc
+  lineinfile: dest="{{ home_dir }}/.bashrc" line='export GMTED30={{ gmted30_path }}'
+  when: mount_network_folders is defined and mount_network_folders
+  ignore_errors: no
+
 - name: Doppler | Add GTOPO30 vrt to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line='export GTOPO30={{ gtopo30_path }}'
   when: mount_network_folders is defined and mount_network_folders
