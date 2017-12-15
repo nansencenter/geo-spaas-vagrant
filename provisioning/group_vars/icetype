@@ -1,0 +1,10 @@
+---
+dev_sources_dir: "{{ shared_dir }}/icetype_vm"
+
+nansat_version: develop
+mount_network_folders: yes
+
+conda_xtra_pkgs:
+  - mahotas
+  - scikit-learn
+

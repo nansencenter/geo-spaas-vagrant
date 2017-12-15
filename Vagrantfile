@@ -46,9 +46,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cmems.vm.network :private_network, ip: "192.168.33.18"
   end
 
+  config.vm.define "icetype", autostart: false do |icetype|
+    icetype.vm.network :private_network, ip: "192.168.33.19"
+    icetype.vm.synced_folder "/files/site_media/", "/site_media"
+    icetype.vm.provider "virtualbox" do |v|
+      v.memory = 10000
+      v.cpus = 6
+    end
+
   config.vm.define "fabio", autostart: false do |cmems|
-    cmems.vm.network :private_network, ip: "192.168.33.19"
+    cmems.vm.network :private_network, ip: "192.168.33.20"
   end
+
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 4000

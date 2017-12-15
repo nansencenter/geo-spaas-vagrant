@@ -22,8 +22,11 @@
 [cmems]
 192.168.33.18 ansible_connection=local
 
-[cmems]
+[icetype]
 192.168.33.19 ansible_connection=local
+
+[cmems]
+192.168.33.20 ansible_connection=local
 
 [travis]
 localhost
