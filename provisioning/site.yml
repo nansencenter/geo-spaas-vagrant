@@ -111,6 +111,19 @@
     LC_ALL: "en_US.UTF-8"
     CPL_ZIP_ENCODING: "UTF-8"
 
+- hosts: fabio
+  roles:
+    - localvm
+    - conda
+    - nansat
+    - geospaas_catalog
+    #- adt_data
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+    CPL_ZIP_ENCODING: "UTF-8"
+
 - hosts: travis
   roles:
     - conda
