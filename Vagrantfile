@@ -53,9 +53,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       v.memory = 10000
       v.cpus = 6
     end
+  end
 
-  config.vm.define "fabio", autostart: false do |cmems|
-    cmems.vm.network :private_network, ip: "192.168.33.20"
+  config.vm.define "fabio", autostart: false do |fabio|
+    fabio.vm.network :private_network, ip: "192.168.33.20"
   end
 
 
