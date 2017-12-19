@@ -25,6 +25,13 @@
     - "{{ geospaas_products_root }}"
     - "{{ django_project_path }}/static"
 
+- name: Django deploy | add spatialite library path to settings.py
+  blockinfile:
+    dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
+    insertbefore: DATABASES
+    block: |
+        SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
+
 - name: Django deploy | add variables to settings.py
   blockinfile:
     dest: '{{ django_project_path }}/{{ django_project_name }}/settings.py'
