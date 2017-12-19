@@ -55,6 +55,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.define "fabio", autostart: false do |fabio|
+    fabio.vm.network :private_network, ip: "192.168.33.20"
+  end
+
+
   config.vm.provider "virtualbox" do |v|
     v.memory = 4000
     v.cpus = 2

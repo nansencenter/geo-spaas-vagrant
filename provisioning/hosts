@@ -25,5 +25,8 @@
 [icetype]
 192.168.33.19 ansible_connection=local
 
+[fabio]
+192.168.33.20 ansible_connection=local
+
 [travis]
 localhost
