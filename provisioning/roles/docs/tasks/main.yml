@@ -1,0 +1,6 @@
+- name: Nansat Setup Python | Install Sphinx to create documentation in reStructuredText
+  pip: name={{ item }}
+  with_items:
+    - sphinx
+    - sphinx-autobuild
+
