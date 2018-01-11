@@ -1,17 +1,17 @@
 ---
 #geo-spaas-vagrant\tasks\setup_python.yml
-- name: Setup Python | Create condarc
+- name: Geo-SPaaS Setup Python | Create condarc
   file: "path={{ home_dir }}/.condarc state=touch"
 
-- name: Setup Python | Fix certifi breaking things
+- name: Geo-SPaaS Setup Python | Fix certifi breaking things
   lineinfile: "dest={{ home_dir }}/.condarc line='ssl_verify: false'"
 
-- name: Setup Python | Install django-geo-spaas requirements (conda)
+- name: Geo-SPaaS Setup Python | Install django-geo-spaas requirements (conda)
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
     - "{{ conda_core_pkgs + conda_xtra_pkgs}}"
 
-- name: Setup Python | Install django-geo-spaas requirements (PIP)
+- name: Geo-SPaaS Setup Python | Install django-geo-spaas requirements (PIP)
   pip: name={{ item }}
   with_items:
     - django-forms-bootstrap
@@ -19,7 +19,7 @@
     - thredds_crawler
     - ipdb
 
-- name: Setup Python | Clone pysqlite
+- name: Geo-SPaaS Setup Python | Clone pysqlite
   git: repo=https://github.com/ghaering/pysqlite
        dest="{{ ansible_env.HOME }}/pysqlite/"
        version=da389878e7c0623cf188387b9fce4fc77d0a9b2c
@@ -27,7 +27,7 @@
   register: git_pysqlite
   when: use_local_database is defined and use_local_database
 
-- name: Setup Python | Install pysqlite
+- name: Geo-SPaaS Setup Python | Install pysqlite
   shell: 'python setup.py install'
   args:
     chdir: "{{ ansible_env.HOME }}/pysqlite/"

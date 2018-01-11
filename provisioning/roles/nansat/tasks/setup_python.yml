@@ -1,34 +1,35 @@
 ---
 #nansat\tasks\setup_python.yml
 
-- name: Python | Create conda_pkgs in shared folder
+- name: Nansat Setup Python | Create conda_pkgs in shared folder
   file: path="{{ cache_dir }}/conda_pkgs/empty" state=directory
   when: use_conda_cache is defined and use_conda_cache
 
-- name: Python | Copy cached packages from conda_pkgs
+- name: Nansat Setup Python | Copy cached packages from conda_pkgs
   shell: 'cp {{ cache_dir }}/conda_pkgs/* {{ conda_dir }}/pkgs/ -r'
   when: use_conda_cache is defined and use_conda_cache
 
-- name: Python | Install Nansat requirements
+- name: Nansat Setup Python | Install Nansat requirements
   shell: 'conda install -q --yes -c conda-forge {{ nansat_reqs }}'
 
-- name: Python | Copy downloaded packages to cached conda_pkgs
+- name: Nansat Setup Python | Copy downloaded packages to cached conda_pkgs
   shell: 'cp {{ conda_dir }}/pkgs/*.[bt][zx][2t] {{ cache_dir }}/conda_pkgs/'
   when: use_conda_cache is defined and use_conda_cache
 
-- name: Python | Add GDAL_DATA to .bashrc
+- name: Nansat Setup Python | Add GDAL_DATA to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line="export GDAL_DATA={{ conda_dir }}/share/gdal"
 
-- name: Python | Add CPL_ZIP_ENCODING to .bashrc
+- name: Nansat Setup Python | Add CPL_ZIP_ENCODING to .bashrc
   lineinfile: dest="{{ home_dir }}/.bashrc" line="export CPL_ZIP_ENCODING=UTF-8"
 
-- name: Python | Add links to some conda libraries to /usr/lib
+- name: Nansat Setup Python | Add links to some conda libraries to /usr/lib
   become: yes
   file: src="{{ conda_dir }}/lib/{{ item }}" dest="/usr/lib/{{ item }}" state=link
   with_items:
     - libgeos_c.so
     - libgdal.so
 
-- name: Python | Run ldconfig
+- name: Nansat Setup Python | Run ldconfig
   become: yes
   shell: '/sbin/ldconfig'
+
