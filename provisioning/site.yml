@@ -4,6 +4,7 @@
     - localvm
     - conda
     - nansat
+    - docs
     - sample_datasets
     - course
     - geospaas_catalog
