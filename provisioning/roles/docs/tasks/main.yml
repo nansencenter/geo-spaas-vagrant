@@ -1,6 +1,9 @@
-- name: Nansat Setup Python | Install Sphinx to create documentation in reStructuredText
+- name: Docs | Install Sphinx to create documentation in reStructuredText
   pip: name={{ item }}
   with_items:
     - sphinx
     - sphinx-autobuild
-
+    - sphinx_rtd_theme
+    - recommonmark
+    - nbsphinx
+    - nbsphinx-link
