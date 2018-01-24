@@ -2,7 +2,7 @@
 dev_sources_dir: "{{ shared_dir }}/src"
 
 pythesint_version: master
-nansat_version: dev_doppler_vm
+nansat_version: develop
 openwind_version: develop
 geospaas_version: master
 
