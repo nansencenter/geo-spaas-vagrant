@@ -11,7 +11,7 @@ python_dist_packages: "{{ conda_dir }}/lib/python2.7/site-packages"
 
 # The following settings can be changed in group_vars/<vm name>
 pythesint_version: master
-nansat_version: develop
+nansat_version: master
 geospaas_version: master
 add_sample_data: yes
 mount_network_folders: yes
