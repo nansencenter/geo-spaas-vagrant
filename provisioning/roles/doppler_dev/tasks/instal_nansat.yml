@@ -1,0 +1,9 @@
+---
+#doppler_dev\tasks\instal_nansat.yml
+- name: nansat | Install Nansat requirements
+  shell: 'conda install -q --yes -c conda-forge {{ nansat_requirements }}'
+
+- name: nansat | Install Nansat from PyPi
+  pip:
+    name: nansat
+    version: 1.0.3
