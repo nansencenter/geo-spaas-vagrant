@@ -1,2 +1,4 @@
 ---
 - include: instal_nansat.yml
+- include: set_git_rsa_key.yml
+- include: instal_openwind.yml
