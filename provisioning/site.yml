@@ -42,6 +42,14 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
+- hosts: doppler_dev
+  roles:
+    - localvm
+  environment:
+    PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    GDAL_DATA: "{{ conda_dir }}/share/gdal"
+    LC_ALL: "en_US.UTF-8"
+
 - hosts: doppler_prod
   roles:
     - localvm
