@@ -45,6 +45,8 @@
 - hosts: doppler_dev
   roles:
     - localvm
+    - conda
+
   environment:
     PATH: "{{ conda_dir }}/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
