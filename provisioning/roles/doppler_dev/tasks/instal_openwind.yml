@@ -1,0 +1,26 @@
+- name: Openwind | Update/checkout OpenWind
+  git: repo=https://github.com/nansencenter/openwind
+       dest="{{ dev_sources_dir }}/openwind"
+       version="{{ openwind_version }}"
+       update=yes
+       accept_hostkey=True
+       key_file="/home/vagrant/.ssh/id_rsa"
+  ignore_errors: yes
+
+- name: Openwind | Create link from Python dist-packages to openwind
+  file: path='{{ python_dist_packages }}/openwind'
+        src='{{ dev_sources_dir }}/openwind/openwind'
+        state=link
+        force=yes
+
+- name: Openwind | Create link from Python dist-packages to openwind_integration_tests
+  file: path='{{ python_dist_packages }}/openwind_integration_tests'
+        src='{{ dev_sources_dir }}/openwind/openwind_integration_tests'
+        state=link
+        force=yes
+
+- name: Openwind | Create link from Python dist-packages to openwind_local_archive.py
+  file: path='{{ python_dist_packages }}/openwind_local_archive.py'
+        src='{{ dev_sources_dir }}/openwind/templates/openwind_local_archive.py'
+        state=link
+        force=yes

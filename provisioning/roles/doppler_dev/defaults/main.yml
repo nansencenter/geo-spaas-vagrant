@@ -1,2 +1,4 @@
 ---
 nansat_requirements : numpy pythesint scipy=0.18.1 basemap netcdf4 urllib3 gdal pillow cfunits
+dev_sources_dir: "{{ shared_dir }}/src"
+openwind_version: develop
