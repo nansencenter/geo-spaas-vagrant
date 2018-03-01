@@ -1,0 +1,13 @@
+---
+- name: nansatmap | Update/checkout Nansatmap
+  git: repo=https://github.com/nansencenter/nansatmap
+       dest="{{ dev_sources_dir }}/nansatmap/"
+       version=master
+       update=yes
+  ignore_errors: no
+
+- name: nansat | Install Nansatmap 
+  shell: 'python setup.py install'
+  args:
+    chdir: '{{ dev_sources_dir }}/nansatmap'
+

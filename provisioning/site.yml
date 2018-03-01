@@ -31,6 +31,7 @@
     - localvm
     - conda
     - nansat
+    - nansatmap
     - openwind
     - sample_datasets
     - geospaas_catalog
@@ -47,6 +48,7 @@
     - localvm
     - conda
     - nansat
+    - nansatmap
     - openwind
     - sample_datasets
     - geospaas_catalog
