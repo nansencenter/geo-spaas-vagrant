@@ -42,7 +42,7 @@
     GDAL_DATA: "{{ conda_dir }}/share/gdal"
     LC_ALL: "en_US.UTF-8"
 
-- hosts: doppler_dev
+- hosts: sar_phd
   roles:
     - localvm
     - conda
