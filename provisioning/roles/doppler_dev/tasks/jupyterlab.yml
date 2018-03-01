@@ -1,0 +1,16 @@
+---
+- name: JupyterLab | Install JupyterLab
+  shell: 'conda install -q --yes -c conda-forge jupyterlab'
+
+- name: JupyterLab | Add JupyterLab to crontab
+  cron: name='JupyterLab' special_time=reboot job='sleep 60; {{ conda_dir }}/bin/jupyter-lab --ip=0.0.0.0 --no-browser --notebook-dir={{ phd_project_dir }} --LabApp.token=vagrant'
+
+- name: JupyterLab | Check if JupyterLab is running
+  shell: ps aux | grep jupyter-lab | grep -v grep
+  ignore_errors: yes
+  changed_when: false
+  register: jupyter_status
+
+- name: JupyterLab | Launch JupyterLab Notebook
+  shell: 'nohup {{ conda_dir }}/bin/jupyter-lab --ip=0.0.0.0 --no-browser --notebook-dir={{ phd_project_dir }} --NotebookApp.token=vagrant > /dev/null 2>&1 &'
+  when: jupyter_status.rc != 0
