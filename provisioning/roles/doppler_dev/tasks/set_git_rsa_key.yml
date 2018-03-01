@@ -1,10 +1,11 @@
-- name: Create the Github SSH public key file
-  copy: src="key_rsa.pub"
-        dest="/home/vagrant/.ssh/id_rsa.pub"
-        mode=0644
+- name: GitHub SSH | Create the Github SSH public key file
+  copy: 
+    src: key_rsa.pub
+    dest: /home/vagrant/.ssh/key_rsa.pub
+    mode: 0700
 
-- name: Create the Github SSH private key file
-  copy: src="key_rsa"
-        dest="/home/vagrant/.ssh/id_rsa"
-        mode=0600
-
+- name: GitHub SSH | Create the Github SSH public key file
+  copy: 
+    src: key_rsa
+    dest: /home/vagrant/.ssh/key_rsa
+    mode: 0600
