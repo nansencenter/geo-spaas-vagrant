@@ -1,0 +1,14 @@
+- name: Create phd directory in shared folder
+  file: 
+    path: '{{ phd_project_dir }}'
+    state: directory
+
+- name: Create phd directory in shared folder
+  file: 
+    path: '{{ data_dir }}'
+    state: directory
+
+- name: Create phd directory in shared folder
+  file: 
+    path: '{{ dev_sources_dir }}'
+    state: directory

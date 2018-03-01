@@ -1,0 +1,46 @@
+---
+- name: Nansat | Install Nansat requirements
+  shell: 'conda install -q --yes -c conda-forge {{ nansat_requirements }}'
+
+- name: Nansat | Install Nansat from PyPi
+  pip:
+    name: nansat
+    version: 1.0.3
+
+- name: OpenWind | Update/checkout OpenWind
+  git: 
+    repo: https://github.com/nansencenter/openwind
+    dest: '{{ phd_sources_dir }}/openwind'
+    version: '{{ openwind_version }}'
+    update: yes
+  ignore_errors: yes
+
+- name: OpenWind | Create link from Python dist-packages to openwind
+  file: 
+    path: '{{ python_dist_packages }}/openwind'
+    src: '{{ phd_sources_dir }}/openwind/openwind'
+    state: link
+    force: yes
+
+- name: SAR Doppler | pull sardoppler
+  git: 
+    repo: git@github.com:nansencenter/sar-doppler.git
+    dest: "{{ phd_sources_dir }}/sar-doppler"
+    version: master
+    accept_hostkey: yes
+    key_file: /home/vagrant/.ssh/key_rsa
+  ignore_errors: yes
+  
+- name: SAR Doppler | Create link from Python dist-packages to sardoppler
+  file: 
+    path: '{{ python_dist_packages }}/sardoppler'
+    src: '{{ phd_sources_dir }}/sar-doppler/sardoppler'
+    state: link
+    force: yes
+
+- name: SAR Doppler | Create link from Python dist-packages to nansat_mappers
+  file:
+    path: '{{ python_dist_packages }}/nansat_mappers'
+    src: '{{ phd_sources_dir }}/sar-doppler/nansat_mappers'
+    state: link
+    force: yes
