@@ -14,9 +14,15 @@
         state=link
         force=yes
 
-- name: Openwind | Create link from Python dist-packages to nansat_mappers in openwind
-  file: path='{{ python_dist_packages }}/nansat_mappers'
-        src='{{ dev_sources_dir }}/openwind/nansat_mappers'
+- name: Openwind | Create link from Python dist-packages to init file of nansat_mappers in openwind
+  file: path='{{ python_dist_packages }}/nansat_mappers/__init__.py'
+        src='{{ dev_sources_dir }}/openwind/nansat_mappers/__init__.py'
+        state=link
+        force=yes
+
+- name: Openwind | Create link from Python dist-packages to quikscat mapper in openwind
+  file: path='{{ python_dist_packages }}/nansat_mappers/mapper_quikscat.py'
+        src='{{ dev_sources_dir }}/openwind/nansat_mappers/mapper_quikscat.py'
         state=link
         force=yes
 

@@ -50,3 +50,6 @@
   shell: "nosetests nansat"
   when: test_nansat is defined and test_nansat
   ignore_errors: yes
+
+- name: nansat | Create folder in which to store external nansat mappers
+  file: path="{{ python_dist_packages }}/nansat_mappers" state=directory
