@@ -1,4 +1,7 @@
 ---
+#- name: Openwind | Create folder in Python dist-packages
+#  file: path="{{ python_dist_packages }}/openwind" state=directory
+
 - name: Openwind | Update/checkout OpenWind
   git: repo=https://github.com/nansencenter/openwind
        dest="{{ dev_sources_dir }}/openwind"
@@ -8,6 +11,12 @@
 - name: Openwind | Create link from Python dist-packages to openwind
   file: path='{{ python_dist_packages }}/openwind'
         src='{{ dev_sources_dir }}/openwind/openwind'
+        state=link
+        force=yes
+
+- name: Openwind | Create link from Python dist-packages to nansat_mappers in openwind
+  file: path='{{ python_dist_packages }}/nansat_mappers'
+        src='{{ dev_sources_dir }}/openwind/nansat_mappers'
         state=link
         force=yes
 
@@ -22,3 +31,7 @@
         src='{{ dev_sources_dir }}/openwind/templates/openwind_local_archive.py'
         state=link
         force=yes
+
+- name: OpenWind Setup Python | Install cartopy
+  shell: 'conda install cartopy'
+

@@ -21,7 +21,7 @@
 
 - name: Doppler | Add drifter datasets in January 2010 to db
   django_manage: >
-    command='ingest_svp_drifters {{ drifter_data_folder }}/{{ item.meta }} {{ drifter_data_folder }}/{{ item.data }} --start 2010-01-01 --stop 2010-01-31'
+    command='ingest_svp_drifters {{ drifter_data_folder }}/{{ item.meta }} {{ drifter_data_folder }}/{{ item.data }} --start 2010-01-01 --stop 2010-03-31'
     app_path='{{ django_project_path }}'
   with_items:
     - {meta: dirfl_1_5000.dat, data: buoydata_1_5000.dat}
@@ -29,7 +29,7 @@
     - {meta: dirfl_10001_15000.dat, data: buoydata_10001_15000.dat}
     - {meta: dirfl_15001_sep16.dat, data: buoydata_15001_sep16.dat}
   when: ingest_drifters is defined and ingest_drifters
-  ignore_errors: yes
+  ignore_errors: no
 
 # THIS DOESN'T WORK..:
 #- name: Add the github SSH public key to the vm authorized_keys
