@@ -5,7 +5,7 @@ openwind_version: develop
 geospaas_version: master
 
 add_sample_data: no
-ingest_drifters: yes
+ngest_drifters: no
 mount_network_folders: yes
 test_nansat: no
 
