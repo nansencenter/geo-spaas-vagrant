@@ -1,11 +1,23 @@
 ---
 - name: Nansat | Install Nansat requirements
-  shell: 'conda install -q --yes -c conda-forge {{ nansat_requirements }}'
+  shell: 'conda install -q --yes -c conda-forge {{ nansat_requirements_conda }}'
 
 - name: Nansat | Install Nansat from PyPi
-  pip:
-    name: nansat
-    version: 1.0.3
+  shell: 'pip install {{ nansat_requirements_pip }}'
+
+- name: Nansat | Update/checkout Nansat
+  git: 
+    repo: https://github.com/nansencenter/nansat
+    dest: '{{ phd_sources_dir }}/nansat'
+    update: yes
+  ignore_errors: yes
+
+- name: Nansat | Create link from Python dist-packages to nansat
+  file: 
+    path: '{{ python_dist_packages }}/nansat'
+    src: '{{ phd_sources_dir }}/nansat/nansat'
+    state: link
+    force: yes
 
 - name: OpenWind | Update/checkout OpenWind
   git: 

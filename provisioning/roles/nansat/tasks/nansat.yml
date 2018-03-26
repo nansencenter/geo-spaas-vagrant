@@ -1,52 +1,61 @@
 ---
 #usepython\tasks\nansat.yml
-- name: nansat | Update/checkout Nansat
-  git: repo=https://github.com/nansencenter/nansat
-       dest="{{ dev_sources_dir }}/nansat/"
-       version="{{ nansat_version }}"
-       update=yes
-  register: git_nansat
-  tags:
-    - update-nansat
-  ignore_errors: no
+- name: nansat | Install Nansat requirements
+  shell: 'conda install -q --yes -c conda-forge {{ nansat_reqs }}'
 
-- name: nansat | Clean Nansat (always run to keep the pixel functions updated)
-  shell: 'python setup.py clean --all'
-  args:
-    chdir: '{{ dev_sources_dir }}/nansat'
-  tags:
-    - update-nansat
 
-- name: nansat | Install Nansat (always run to keep the pixel functions updated)
-  shell: 'python setup.py build_ext --inplace'
-  args:
-    chdir: '{{ dev_sources_dir }}/nansat'
-  tags:
-    - update-nansat
+- name: nansat | Install Nansat
+  pip:
+    name: nansat
+    version: 1.0.3
 
-- name: nansat | Create link from Python dist-packages to nansat
-  file: path='{{ python_dist_packages }}/nansat'
-        src='{{ dev_sources_dir }}/nansat/nansat'
-        state=link
-        force=yes
+#- name: nansat | Update/checkout Nansat
+#  git: repo=https://github.com/nansencenter/nansat
+#       dest="{{ dev_sources_dir }}/nansat/"
+#       version="{{ nansat_version }}"
+#       update=yes
+#  register: git_nansat
+#  tags:
+#    - update-nansat
+#  ignore_errors: no
 
-- name: nansat | Create link from Python dist-packages to nansat_integration_tests
-  file: path='{{ python_dist_packages }}/nansat_integration_tests'
-        src='{{ dev_sources_dir }}/nansat/nansat_integration_tests'
-        state=link
-        force=yes
+# - name: nansat | Clean Nansat (always run to keep the pixel functions updated)
+#  shell: 'python setup.py clean --all'
+#  args:
+#    chdir: '{{ dev_sources_dir }}/nansat'
+#  tags:
+#    - update-nansat
 
-- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to network folder
-  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ nansat_test_data_dir }}'
-  when: mount_network_folders is defined and mount_network_folders and nansat_test_data_dir is defined
-  ignore_errors: no
+# - name: nansat | Install Nansat (always run to keep the pixel functions updated)
+#  shell: 'python setup.py build_ext --inplace'
+#  args:
+#    chdir: '{{ dev_sources_dir }}/nansat'
+#  tags:
+#    - update-nansat
 
-- name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to local folder
-  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ sample_data_dir }}'
-  when: nansat_test_data_dir is undefined
-  ignore_errors: no
+# - name: nansat | Create link from Python dist-packages to nansat
+#  file: path='{{ python_dist_packages }}/nansat'
+#        src='{{ dev_sources_dir }}/nansat/nansat'
+#        state=link
+#        force=yes
+
+# - name: nansat | Create link from Python dist-packages to nansat_integration_tests
+#  file: path='{{ python_dist_packages }}/nansat_integration_tests'
+#        src='{{ dev_sources_dir }}/nansat/nansat_integration_tests'
+#        state=link
+#        force=yes
+
+# - name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to network folder
+#  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ nansat_test_data_dir }}'
+#  when: mount_network_folders is defined and mount_network_folders and nansat_test_data_dir is defined
+#  ignore_errors: no
+
+# - name: nansat | Set environment variable MAPPER_TEST_DATA_DIR to local folder
+#  lineinfile: dest="{{ home_dir }}/.bashrc" line='export MAPPER_TEST_DATA_DIR={{ sample_data_dir }}'
+#  when: nansat_test_data_dir is undefined
+#  ignore_errors: no
 
 - name: nansat | Nosetests
   shell: "nosetests nansat"
   when: test_nansat is defined and test_nansat
-  ignore_errors: yes
+  ignore_errors: no

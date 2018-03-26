@@ -1,0 +1,17 @@
+---
+
+- name: PhD project | Update/checkout PhD project code
+  git: 
+    repo: git@github.com:nansencenter/upper-ocean-circulation-phd.git
+    version: master
+    dest: "{{ phd_sources_dir }}/upper-ocean-circulation-phd"
+    accept_hostkey: yes
+    key_file: /home/vagrant/.ssh/key_rsa
+  ignore_errors: yes
+
+- name: PhD project | Create link from Python dist-packages to PhD project
+  file: 
+    path: '{{ python_dist_packages }}/phd_project'
+    src: '{{ phd_sources_dir }}/upper-ocean-circulation-phd/phd_project'
+    state: link
+    force: yes

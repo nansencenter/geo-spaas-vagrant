@@ -3,6 +3,7 @@ vm_user: vagrant
 phd_project_dir: '{{ shared_dir }}/phd'
 phd_sources_dir: '{{ phd_project_dir }}/code'
 data_dir: '{{ phd_project_dir }}/data'
-nansat_requirements : numpy pythesint scipy=0.18.1 basemap netcdf4 urllib3 gdal pillow cfunits
+nansat_requirements_conda: numpy pillow scipy=0.18.1 basemap gdal
+nansat_requirements_pip: urllib3 pillow netcdf4
 openwind_version: develop
 sardoppler_version: master

@@ -1,6 +1,8 @@
 ---
+
 - include: mkdirs.yml
 - include: set_git_rsa_key.yml
 - include: install_starter_pkgs.yml
+- include: pythesint.yml
+- include: phd_code.yml 
 - include: jupyterlab.yml
-# - include: phd_code.yml 
