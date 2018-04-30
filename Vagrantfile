@@ -19,6 +19,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "doppler", autostart: false do |doppler|
     doppler.vm.network :private_network, ip: "192.168.33.12"
+    doppler.vm.provider "virtualbox" do |v|
+      v.memory = 8000
+      v.cpus = 3
+    end
   end
 
   config.vm.define "metsarvind", autostart: false do |metsarvind|
