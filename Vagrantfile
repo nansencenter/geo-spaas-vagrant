@@ -20,8 +20,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "doppler", autostart: false do |doppler|
     doppler.vm.network :private_network, ip: "192.168.33.12"
     doppler.vm.provider "virtualbox" do |v|
-      v.memory = 8000
-      v.cpus = 3
+      # See https://www.digitalocean.com/community/tutorials/how-to-add-swap-on-ubuntu-14-04 to add
+      # swap space - this could also be done during provisioning...
+      v.memory = 10000
+      v.cpus = 7
     end
   end
 
