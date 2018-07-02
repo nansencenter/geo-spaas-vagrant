@@ -8,6 +8,9 @@ add_sample_data: yes
 mount_network_folders: yes
 test_nansat: no
 
+#conda_xtra_pkgs:
+#  - cartopy
+
 #geospaas_xtra_apps: []
 #geospaas_xtra_urls: []
 
