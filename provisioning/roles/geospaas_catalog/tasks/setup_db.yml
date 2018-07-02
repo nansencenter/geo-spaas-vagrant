@@ -7,6 +7,11 @@
       pythonpath='{{ django_project_path }}'
   when: make_migrations is defined and make_migrations
 
+- name: Setup DB | Make backup of local database
+  copy:
+    src: '{{ django_project_path }}/geodjango.db'
+    dest: '{{ django_project_path }}/geodjango.db.backup'
+
 - name: Setup DB | Run migrate on django-geo-spaas project
   django_manage: >
       command=migrate
