@@ -2,15 +2,12 @@
 dev_sources_dir: "{{ shared_dir }}/src"
 
 openwind_version: develop
-geospaas_version: master
+geospaas_version: issue13_entry_id
 
 add_sample_data: no
 ngest_drifters: no
 mount_network_folders: yes
 test_nansat: no
-
-conda_xtra_pkgs:
-  - pandas
 
 django_project_name: 'geospaas_doppler'
 
