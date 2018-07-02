@@ -37,7 +37,3 @@
         src='{{ dev_sources_dir }}/openwind/templates/openwind_local_archive.py'
         state=link
         force=yes
-
-- name: OpenWind Setup Python | Install cartopy
-  shell: 'conda install cartopy'
-
