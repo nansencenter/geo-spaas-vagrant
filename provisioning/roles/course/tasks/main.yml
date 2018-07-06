@@ -18,3 +18,8 @@
 - name: course | Launch Jupyter Notebook
   shell: "nohup {{ conda_dir }}/bin/jupyter-notebook --ip=0.0.0.0 --no-browser --notebook-dir={{ dev_sources_dir }}/nansat-lectures/notebooks/ --NotebookApp.token=vagrant > /dev/null 2>&1 &"
   when: jupyter_status.rc != 0
+
+  #- name: Nansat Setup Python | Check if numpy is imported
+  #  shell: "nosetests test_import.py"
+  #  args:
+  #    chdir: "{{ shared_dir }}"

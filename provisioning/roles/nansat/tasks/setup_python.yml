@@ -10,7 +10,12 @@
   when: use_conda_cache is defined and use_conda_cache
 
 - name: Nansat Setup Python | Install Nansat requirements
-  shell: 'conda install -q --yes -c conda-forge {{ nansat_reqs }}'
+  shell: 'conda install -q --yes -c conda-forge {{ item }}'
+  with_items:
+    - "{{ nansat_reqs }}"
+
+- name: Nansat Setup Python | Update all conda packages to ensure compatibility
+  shell: "conda update --all"
 
 - name: Nansat Setup Python | Copy downloaded packages to cached conda_pkgs
   shell: 'cp {{ conda_dir }}/pkgs/*.[bt][zx][2t] {{ cache_dir }}/conda_pkgs/'
@@ -33,3 +38,7 @@
   become: yes
   shell: '/sbin/ldconfig'
 
+  #- name: Nansat Setup Python | Check if numpy is imported
+  #  shell: "nosetests test_import.py"
+  #  args:
+  #    chdir: "{{ shared_dir }}"

@@ -6,10 +6,23 @@
 - name: Geo-SPaaS Setup Python | Fix certifi breaking things
   lineinfile: "dest={{ home_dir }}/.condarc line='ssl_verify: false'"
 
+  #- name: Geo-SPaaS Setup Python | Check if numpy is imported
+  #  shell: "nosetests test_import.py"
+  #  args:
+  #    chdir: "{{ shared_dir }}"
+
 - name: Geo-SPaaS Setup Python | Install django-geo-spaas requirements (conda)
   shell: 'conda install -q --yes -c conda-forge {{ item }}'
   with_items:
     - "{{ conda_core_pkgs + conda_xtra_pkgs}}"
+
+- name: Nansat Setup Python | Update all conda packages to ensure compatibility
+  shell: "conda update --all"
+
+  #- name: Geo-SPaaS Setup Python | Check if numpy is imported
+  #  shell: "nosetests test_import.py"
+  #  args:
+  #    chdir: "{{ shared_dir }}"
 
 - name: Geo-SPaaS Setup Python | Install django-geo-spaas requirements (PIP)
   pip: name={{ item }}
