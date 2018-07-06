@@ -61,10 +61,10 @@
     regexp: 'db.sqlite3'
     replace: 'geodjango.db'
 
-- name: Django deploy | Add include in urls.py
+- name: Django deploy | Import django.conf.settings and django.conf.urls.include in urls.py
   lineinfile:
     dest: '{{ django_project_path }}/{{ django_project_name }}/urls.py'
-    insertafter: BOF
+    insertbefore: BOF
     line: "{{ item }}"
   with_items:
     - "from django.conf import settings"
