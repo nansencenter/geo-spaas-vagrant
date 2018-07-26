@@ -1,12 +1,4 @@
 ---
-- name: Setup DB | Run makemigrations on django-geo-spaas project
-  django_manage: >
-      command=makemigrations
-      app_path='{{ django_project_path }}'
-      settings='{{ django_project_name }}.settings'
-      pythonpath='{{ django_project_path }}'
-  when: make_migrations is defined and make_migrations
-
 - name: Setup DB | Make backup of local database
   copy:
     src: '{{ django_project_path }}/geodjango.db'
