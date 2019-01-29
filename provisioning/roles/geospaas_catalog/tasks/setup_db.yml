@@ -1,4 +1,10 @@
 ---
+# The following is to avoid the backup solution in next task to fail..
+- name: Setup DB | Create fake db if the db has not yet been created
+  command: 'touch {{ django_project_path }}/geodjango.db'
+  args:
+    creates: '{{ django_project_path }}/geodjango.db'
+
 - name: Setup DB | Make backup of local database
   copy:
     src: '{{ django_project_path }}/geodjango.db'
